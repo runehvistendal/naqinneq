@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
-type State = 'idle' | 'form' | 'sent' | 'error';
+type State = 'idle' | 'form' | 'sent';
 
 export function PageFoot() {
   const t = useTranslations('pageFoot');
@@ -12,6 +12,7 @@ export function PageFoot() {
 
   const [state, setState] = useState<State>('idle');
   const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [msg, setMsg] = useState('');
   // Honeypot: hidden from humans, bots fill it in
   const [honeypot, setHoneypot] = useState('');
@@ -25,9 +26,9 @@ export function PageFoot() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type, message: msg.trim(), page: pathname, website: honeypot }),
       });
-      setState(res.ok ? 'sent' : 'error');
+      if (res.ok) { setState('sent'); } else { setHasError(true); }
     } catch {
-      setState('error');
+      setHasError(true);
     } finally {
       setLoading(false);
     }
@@ -73,7 +74,7 @@ export function PageFoot() {
             rows={4}
             required
           />
-          {state === 'error' && <p className="page-foot-error">{t('fejl')}</p>}
+          {hasError && <p className="page-foot-error">{t('fejl')}</p>}
           <div className="page-foot-btns">
             <button type="submit" className="pf-btn pf-btn-primary" disabled={loading}>
               {loading ? '…' : t('send')}
@@ -94,7 +95,7 @@ export function PageFoot() {
           <button className="pf-btn" onClick={() => setState('form')}>
             {t('foreslaaAendring')}
           </button>
-          {state === 'error' && <p className="page-foot-error">{t('fejl')}</p>}
+          {hasError && <p className="page-foot-error">{t('fejl')}</p>}
         </div>
       )}
     </div>
