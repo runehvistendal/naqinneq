@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { PageBody, Lede, SectionHeading, PersonCard, PersonGrid, Callout, InlineLink } from '@/components/ui/PageBody';
+import { PageBody, Lede, SectionHeading, PersonCard, PersonGrid } from '@/components/ui/PageBody';
+import { KontaktForm } from '@/components/ui/KontaktForm';
 
-export const metadata: Metadata = { title: 'Kontakt' };
+export const metadata: Metadata = { title: 'Kontakt os' };
 
 export default function KontaktPage() {
   return (
@@ -37,19 +38,20 @@ export default function KontaktPage() {
       </PersonGrid>
 
       <SectionHeading>Videnscenteret</SectionHeading>
-      <div className="kv" style={{ maxWidth: 380, marginBottom: 24 }}>
+      <div className="kv" style={{ maxWidth: 380, marginBottom: 40 }}>
         <div>Adresse</div><div>Imaneq 4, 3900 Nuuk</div>
-        <div>Hovednummer</div><div>(+299) 34 50 00</div>
+        <div>Hovednummer</div><div><a href="tel:+299345000" style={{ color: 'var(--primary)' }}>(+299) 34 50 00</a></div>
         <div>E-mail</div><div><a href="mailto:naqinneq@nanoq.gl" style={{ color: 'var(--primary)' }}>naqinneq@nanoq.gl</a></div>
         <div>Åbningstid</div><div>Mandag–fredag 09–15</div>
         <div>Under</div><div>Uddannelsesstyrelsen, Grønland</div>
       </div>
 
-      <Callout>
-        Har du en generel henvendelse? Brug vores{' '}
-        <InlineLink href="/videnscenteret/kontakt/besked">kontaktformular</InlineLink>{' '}
-        — vi svarer inden for 2 hverdage.
-      </Callout>
+      <SectionHeading>Skriv til os</SectionHeading>
+      <p style={{ marginBottom: 24 }}>
+        Udfyld formularen herunder, så vender vi tilbage inden for 2 hverdage.
+        Vi besvarer henvendelser på kalaallisut og dansk.
+      </p>
+      <KontaktForm />
     </PageBody>
   );
 }

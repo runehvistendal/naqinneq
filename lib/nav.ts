@@ -102,8 +102,7 @@ export const NAV: NavSection[] = [
       { id: 'vc-om',      da: 'Om os',          kl: 'Pillugut',                    path: '/videnscenteret/om-os' },
       { id: 'vc-indsats', da: 'Indsatsområder', kl: 'Inissisimanngitsoornerit',    path: '/videnscenteret/indsatsomraader' },
       { id: 'vc-nyheder', da: 'Nyheder',        kl: 'Nalunaarusiit nutaat',         path: '/nyheder' },
-      { id: 'vc-kontakt',        da: 'Kontakt',        kl: 'Attavissaq',                  path: '/videnscenteret/kontakt' },
-      { id: 'vc-kontakt-besked', da: 'Skriv til os',  kl: 'Allakkiuk',                   path: '/videnscenteret/kontakt/besked' },
+      { id: 'vc-kontakt', da: 'Kontakt os', kl: 'Attavissagut', path: '/videnscenteret/kontakt' },
     ],
   },
 ];
