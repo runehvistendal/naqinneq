@@ -1,5 +1,5 @@
 /** Minimal WPGraphQL client */
-const WP_GRAPHQL = 'https://sila.gl/graphql';
+const WP_GRAPHQL = 'https://cms.sila.gl/graphql';
 
 export async function wpQuery<T>(
   query: string,
