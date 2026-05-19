@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getNyhed, NYHEDER } from '@/lib/nyheder';
+import { getNyhed, getNyheder } from '@/lib/nyheder';
 import { PageBody } from '@/components/ui/PageBody';
 
 export async function generateStaticParams() {
-  return NYHEDER.map(n => ({ slug: n.slug }));
+  const nyheder = await getNyheder();
+  return nyheder.map(n => ({ slug: n.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const nyhed = getNyhed(slug);
+  const nyhed = await getNyhed(slug);
   return { title: nyhed?.title ?? 'Nyhed' };
 }
 
@@ -20,7 +21,7 @@ export default async function NyhedPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const nyhed = getNyhed(slug);
+  const nyhed = await getNyhed(slug);
   if (!nyhed) notFound();
 
   const lp = (p: string) => locale === 'kl' ? `/kl${p}` : p;

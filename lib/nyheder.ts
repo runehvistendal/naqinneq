@@ -1,14 +1,84 @@
+import { wpQuery, formatDato, contentToParagraphs } from './wp';
+
 export interface Nyhed {
   slug: string;
   tag: string;
   title: string;
-  date: string;
-  dateIso: string;
+  date: string;       // formatted: "21. april 2026"
+  dateIso: string;    // "2026-04-21"
   excerpt: string;
   body: string[];
 }
 
-export const NYHEDER: Nyhed[] = [
+// ── GraphQL ────────────────────────────────────────────────────────────────
+
+const NYHEDER_QUERY = /* GraphQL */ `
+  query GetNyheder {
+    nyheder(first: 100, where: { status: PUBLISH }) {
+      nodes {
+        slug
+        title
+        date
+        excerpt
+        content
+        nyheder {
+          tag
+          dato
+        }
+      }
+    }
+  }
+`;
+
+interface WpNyhederData {
+  nyheder: {
+    nodes: Array<{
+      slug: string;
+      title: string;
+      date: string;
+      excerpt: string | null;
+      content: string | null;
+      nyheder: { tag: string | null; dato: string | null } | null;
+    }>;
+  };
+}
+
+function mapWpNyhed(node: WpNyhederData['nyheder']['nodes'][0]): Nyhed {
+  const dato = node.nyheder?.dato ?? null;
+  const dateIso = dato
+    ? `${dato.slice(0, 4)}-${dato.slice(4, 6)}-${dato.slice(6, 8)}`
+    : node.date.slice(0, 10);
+
+  return {
+    slug: node.slug,
+    tag: node.nyheder?.tag ?? 'Nyhed',
+    title: node.title,
+    date: dato ? formatDato(dato) : new Date(node.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' }),
+    dateIso,
+    excerpt: node.excerpt ? node.excerpt.replace(/<[^>]+>/g, '').trim() : '',
+    body: node.content ? contentToParagraphs(node.content) : [],
+  };
+}
+
+export async function getNyheder(): Promise<Nyhed[]> {
+  try {
+    const data = await wpQuery<WpNyhederData>(NYHEDER_QUERY);
+    const nodes = data?.nyheder?.nodes ?? [];
+    if (nodes.length === 0) return STATIC_NYHEDER;
+    return nodes.map(mapWpNyhed);
+  } catch {
+    return STATIC_NYHEDER;
+  }
+}
+
+export async function getNyhed(slug: string): Promise<Nyhed | undefined> {
+  const all = await getNyheder();
+  return all.find(n => n.slug === slug);
+}
+
+// ── Static fallback (bruges til Vercel-build hvis WP er nede) ─────────────
+
+export const STATIC_NYHEDER: Nyhed[] = [
   {
     slug: 'handlingsplan-ordblindhed-2025-2029',
     tag: 'Nyhed',
@@ -30,9 +100,8 @@ export const NYHEDER: Nyhed[] = [
     dateIso: '2026-03-03',
     excerpt: 'Den grønlandsksprogede ordblindetest er nu tilgængelig via misiligutit.naqinneq.gl for fagfolk og vejledere.',
     body: [
-      'Den grønlandsksprogede ordblindetest er fra marts 2026 tilgængelig for fagfolk og vejledere via platformen Misiligutit. Testen er udviklet specifikt til kalaallisut og tager højde for sprogets særlige opbygning og ortografi.',
-      'Adgang til testen kræver registrering som fagperson. Vejledere, lærere og psykologer kan ansøge om adgang via Videnscenteret. Testen gennemføres digitalt og giver en rapport med anbefalinger til videre udredning.',
-      'Misiligutit er Naqinneqs platform til fagfolk. Her samles testmaterialer, vejledninger og faglige ressourcer, der kræver professionel baggrund at anvende korrekt.',
+      'Den grønlandsksprogede ordblindetest er fra marts 2026 tilgængelig for fagfolk og vejledere via platformen Misiligutit.',
+      'Adgang til testen kræver registrering som fagperson. Vejledere, lærere og psykologer kan ansøge om adgang via Videnscenteret.',
     ],
   },
   {
@@ -43,13 +112,16 @@ export const NYHEDER: Nyhed[] = [
     dateIso: '2026-02-15',
     excerpt: 'Videnscenteret afholder kursus for lærere og vejledere med fokus på tidlig opdagelse og støtte.',
     body: [
-      'Videnscenteret afholder i foråret 2026 et kursus i ordblindepædagogik henvendt til lærere, vejledere og pædagogisk personale i folkeskolen. Kurset fokuserer på tidlig opdagelse af læse- og skrivevanskeligheder samt konkrete støttestrategier i undervisningen.',
-      'Kurset afholdes over to dage i Nuuk og indeholder både teori og praksis. Deltagerne vil arbejde med konkrete cases og lære at anvende de screenings- og testmaterialer, som Naqinneq stiller til rådighed.',
-      'Tilmelding er åben frem til 1. april 2026. Kurset er gratis for ansatte i den grønlandske folkeskole. Se kursusdetaljer og tilmeld dig via knappen nedenfor.',
+      'Videnscenteret afholder i foråret 2026 et kursus i ordblindepædagogik henvendt til lærere, vejledere og pædagogisk personale i folkeskolen.',
+      'Tilmelding er åben frem til 1. april 2026. Kurset er gratis for ansatte i den grønlandske folkeskole.',
     ],
   },
 ];
 
-export function getNyhed(slug: string): Nyhed | undefined {
-  return NYHEDER.find(n => n.slug === slug);
+/** @deprecated Brug getNyheder() */
+export const NYHEDER = STATIC_NYHEDER;
+
+/** Synkront opslag i statisk data — kun til client components (breadcrumb, sidetitel) */
+export function getStaticNyhed(slug: string) {
+  return STATIC_NYHEDER.find(n => n.slug === slug);
 }

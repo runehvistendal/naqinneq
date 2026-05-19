@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { KURSER } from '@/lib/kurser';
+import { getKurser } from '@/lib/kurser';
 import { PageBody, Lede } from '@/components/ui/PageBody';
 
 export const metadata: Metadata = { title: 'Kurser' };
@@ -8,6 +8,7 @@ export const metadata: Metadata = { title: 'Kurser' };
 export default async function KurserPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const lp = (p: string) => locale === 'kl' ? `/kl${p}` : p;
+  const kurser = await getKurser();
 
   return (
     <PageBody>
@@ -16,7 +17,7 @@ export default async function KurserPage({ params }: { params: Promise<{ locale:
         foregår i Nuuk eller online.
       </Lede>
       <div className="kursus-list">
-        {KURSER.map(k => (
+        {kurser.map(k => (
           <div key={k.slug} className="kursus-card">
             <div className="kursus-card-meta">
               <span className="kursus-dato">{k.date}</span>
@@ -25,7 +26,6 @@ export default async function KurserPage({ params }: { params: Promise<{ locale:
             <div className="kursus-card-title">{k.title}</div>
             <p className="kursus-card-excerpt">{k.excerpt}</p>
             <div className="kursus-card-footer">
-              <span className="kursus-pris">{k.price}</span>
               <Link href={lp(`/ressourcer/kurser/${k.slug}`)} className="cta cta-primary">
                 Se kursus og tilmeld
               </Link>

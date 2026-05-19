@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { NAV, PAGE_MAP } from '@/lib/nav';
-import { getNyhed } from '@/lib/nyheder';
-import { getKursus } from '@/lib/kurser';
+import { getStaticNyhed } from '@/lib/nyheder';
+import { getStaticKursus } from '@/lib/kurser';
 
 interface BreadcrumbProps {
   locale: string;
@@ -21,7 +21,7 @@ export function Breadcrumb({ locale, pathname }: BreadcrumbProps) {
   // Dynamic: /nyheder/[slug]
   if (!page && pathname.startsWith('/nyheder/')) {
     const slug = pathname.slice('/nyheder/'.length);
-    const nyhed = getNyhed(slug);
+    const nyhed = getStaticNyhed(slug);
     const crumbs = [
       forside,
       { label: locale === 'kl' ? 'Nalunaarusiit nutaat' : 'Nyheder', path: '/nyheder' },
@@ -33,7 +33,7 @@ export function Breadcrumb({ locale, pathname }: BreadcrumbProps) {
   // Dynamic: /ressourcer/kurser/[slug]
   if (!page && pathname.startsWith('/ressourcer/kurser/')) {
     const slug = pathname.slice('/ressourcer/kurser/'.length);
-    const kursus = getKursus(slug);
+    const kursus = getStaticKursus(slug);
     const ressourcer = NAV.find(s => s.id === 'ressourcer');
     const crumbs = [
       forside,
