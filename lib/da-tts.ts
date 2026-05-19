@@ -45,6 +45,14 @@ export function stopDanish(): void {
   if (typeof window !== 'undefined') window.speechSynthesis?.cancel();
 }
 
+export function pauseDanish(): void {
+  if (typeof window !== 'undefined') window.speechSynthesis?.pause();
+}
+
+export function resumeDanish(): void {
+  if (typeof window !== 'undefined') window.speechSynthesis?.resume();
+}
+
 // Returns the list of Danish voices available (useful for debugging / display)
 export function listDanishVoices(): SpeechSynthesisVoice[] {
   if (typeof window === 'undefined' || !window.speechSynthesis) return [];

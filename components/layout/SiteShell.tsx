@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Topbar } from './Topbar';
@@ -14,7 +14,7 @@ import { useAccessibility } from '@/components/providers/AccessibilityProvider';
 import { PAGE_MAP } from '@/lib/nav';
 import { getNyhed } from '@/lib/nyheder';
 import { getKursus } from '@/lib/kurser';
-import { speakDanish, stopDanish, initDaSelectionPopup } from '@/lib/da-tts';
+import { speakDanish, stopDanish, pauseDanish, resumeDanish, initDaSelectionPopup } from '@/lib/da-tts';
 import { initMartha, readElement, clearTTS as clearMartha, onMarthaStop } from '@/lib/martha-tts';
 
 interface SiteShellProps {
@@ -36,6 +36,8 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
   const [accessOpen, setAccessOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ttsActive, setTtsActive] = useState(false);
+  const [ttsPaused, setTtsPaused] = useState(false);
+  const isFirstRender = useRef(true);
 
   const rawPath = usePathname();
   const pathname = stripLocalePrefix(rawPath);
@@ -67,6 +69,25 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
     };
   }, [locale]);
 
+  // Auto-stop TTS when navigating to a new page
+  useEffect(() => {
+    if (isFirstRender.current) { isFirstRender.current = false; return; }
+    stopDanish();
+    clearMartha();
+    setTtsActive(false);
+    setTtsPaused(false);
+  }, [rawPath]);
+
+  const onPause = useCallback(() => {
+    if (ttsPaused) {
+      resumeDanish();
+      setTtsPaused(false);
+    } else {
+      pauseDanish();
+      setTtsPaused(true);
+    }
+  }, [ttsPaused]);
+
   const onTTS = useCallback(() => {
     if (ttsActive) {
       if (locale === 'kl') {
@@ -75,8 +96,10 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
         stopDanish();
         setTtsActive(false);
       }
+      setTtsPaused(false);
       return;
     }
+    setTtsPaused(false);
 
     // Target only the article body — skips breadcrumb and page-foot
     const el = document.getElementById('page-article') ?? document.getElementById('main-content');
@@ -88,7 +111,7 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
     } else {
       const text = el.innerText ?? '';
       if (!text.trim()) return;
-      speakDanish(text, { onEnd: () => setTtsActive(false) });
+      speakDanish(text, { onEnd: () => { setTtsActive(false); setTtsPaused(false); } });
       setTtsActive(true);
     }
   }, [ttsActive, locale]);
@@ -162,7 +185,7 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
         pathname={pathname}
       />
       {/* DA: show our TtsStrip. KL: Martha injects its own seekable controls bar. */}
-      {ttsActive && locale !== 'kl' && <TtsStrip onStop={onTTS} />}
+      {ttsActive && locale !== 'kl' && <TtsStrip onStop={onTTS} onPause={onPause} paused={ttsPaused} />}
     </div>
   );
 }

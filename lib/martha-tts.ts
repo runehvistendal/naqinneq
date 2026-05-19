@@ -146,6 +146,8 @@ function loadedRemote(this: XMLHttpRequest): void {
   p.playbackRate = rate;
   p.addEventListener('ended', playNext);
   p.addEventListener('timeupdate', updatePlayback);
+  p.addEventListener('play',  () => { const b = document.getElementById('martha-play'); if (b) { b.textContent = '⏸'; b.title = 'Pause'; } });
+  p.addEventListener('pause', () => { const b = document.getElementById('martha-play'); if (b) { b.textContent = '▶'; b.title = 'Afspil'; } });
 
   g_tts.audio.push({ p, td: g_tts.du, du: rv.du, ts: rv.ts });
   g_tts.du += rv.du;
@@ -324,14 +326,12 @@ export function initMartha(): void {
     const style = document.createElement('style');
     style.id = 'martha-style';
     style.textContent = [
-      // Playback controls bar — reuses Naqinneq TTS-strip look
+      // Playback controls bar — matches TtsStrip orange pill design
       `#${CONTROLS_ID} {`,
       '  position: fixed;',
-      '  bottom: 0;',
-      '  left: 0;',
-      '  right: 0;',
-      '  display: flex;',
-      '  justify-content: center;',
+      '  left: 50%;',
+      '  bottom: 24px;',
+      '  transform: translateX(-50%);',
       '  z-index: 8000;',
       '  pointer-events: none;',
       '}',
@@ -339,22 +339,29 @@ export function initMartha(): void {
       '  pointer-events: all;',
       '  display: flex;',
       '  align-items: center;',
-      '  gap: 8px;',
-      '  background: var(--primary-ink, #0d2b35);',
+      '  gap: 10px;',
+      '  background: var(--accent, #c2531c);',
       '  color: #fff;',
-      '  padding: 8px 16px;',
-      '  border-radius: 999px 999px 0 0;',
-      '  font-size: 0.85rem;',
+      '  padding: 10px 18px;',
+      '  border-radius: 999px;',
+      '  font-size: 13.5px;',
+      '  font-weight: 500;',
+      '  white-space: nowrap;',
+      '  box-shadow: 0 8px 24px rgba(194,83,28,0.4);',
       '}',
-      `#${CONTROLS_ID} input[type=range] { width: 140px; accent-color: var(--accent, #c0392b); }`,
+      `#${CONTROLS_ID} input[type=range] { width: 120px; accent-color: rgba(255,255,255,0.8); cursor: pointer; }`,
       `#${CONTROLS_ID} button {`,
-      '  background: none;',
-      '  border: none;',
+      '  appearance: none;',
+      '  border: 1px solid rgba(255,255,255,0.5);',
+      '  background: transparent;',
       '  color: #fff;',
       '  cursor: pointer;',
-      '  font-size: 1.1rem;',
+      '  font-size: 0.85rem;',
       '  line-height: 1;',
+      '  padding: 3px 10px;',
+      '  border-radius: 999px;',
       '}',
+      `#${CONTROLS_ID} button:hover { background: rgba(255,255,255,0.15); }`,
       // Word highlight
       '.martha-current { background: rgba(255,80,80,.25); border-radius: 2px; }',
     ].join('\n');
@@ -387,11 +394,12 @@ export function initMartha(): void {
   controls.style.display = 'none';
   controls.innerHTML = [
     '<div>',
+    '  <div class="tts-dot" aria-hidden="true"></div>',
     '  <tt id="martha-ctime" title="Aktuel tid">0:00</tt>',
     '  <input id="martha-seeker" type="range" step="0.1" min="0" max="100" title="Søg i afspilning">',
     '  <tt id="martha-ttime" title="Total varighed">0:00</tt>',
-    '  <button id="martha-play" title="Afspil / Pause">⏯</button>',
-    '  <button id="martha-stop" title="Stop">⏹</button>',
+    '  <button id="martha-play" title="Pause">⏸</button>',
+    '  <button id="martha-stop" title="Stop oplæsning">⏹</button>',
     '</div>',
   ].join('');
   document.body.appendChild(controls);
@@ -410,11 +418,21 @@ export function initMartha(): void {
     }
   });
 
-  // Play/pause
+  // Play/pause — update button icon to reflect state
+  const syncPlayBtn = () => {
+    const btn = document.getElementById('martha-play');
+    if (!btn) return;
+    const playing = g_tts.audio.length > 0
+      && g_tts.a < g_tts.audio.length
+      && !g_tts.audio[g_tts.a].p.paused;
+    btn.textContent = playing ? '⏸' : '▶';
+    btn.title = playing ? 'Pause' : 'Afspil';
+  };
   document.getElementById('martha-play')!.addEventListener('click', () => {
     if (!g_tts.audio.length || g_tts.a >= g_tts.audio.length) return;
     const p = g_tts.audio[g_tts.a].p;
     p.paused ? p.play() : p.pause();
+    setTimeout(syncPlayBtn, 50);
   });
 
   // Stop
