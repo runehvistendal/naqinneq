@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getNyhed, NYHEDER } from '@/lib/nyheder';
-import { PageBody } from '@/components/ui/PageBody';
+import { PageBody, PageVideo } from '@/components/ui/PageBody';
 
 export async function generateStaticParams() {
   return NYHEDER.map(n => ({ slug: n.slug }));
@@ -25,6 +25,10 @@ export default async function NyhedPage({
   const lp = (p: string) => locale === 'kl' ? `/kl${p}` : p;
   const accentClass = nyhed.tag === 'Nyhed' ? 'teal' : nyhed.tag === 'Ressource' ? 'navy' : 'amber';
 
+  const isKl = locale === 'kl';
+  const title = isKl && nyhed.titleKl ? nyhed.titleKl : nyhed.title;
+  const body  = isKl && nyhed.bodyKl  ? nyhed.bodyKl  : nyhed.body;
+
   return (
     <PageBody>
       <div className="article-meta">
@@ -32,9 +36,18 @@ export default async function NyhedPage({
         <time dateTime={nyhed.dateIso} className="nyhed-date">{nyhed.date}</time>
       </div>
 
-      {nyhed.body.map((para, i) => (
+      <h1 className="article-title">{title}</h1>
+
+      {body.map((para, i) => (
         <p key={i}>{para}</p>
       ))}
+
+      {nyhed.videoUrl && (
+        <PageVideo
+          src={nyhed.videoUrl}
+          title={nyhed.videoTitle ?? 'Video'}
+        />
+      )}
 
       <div className="article-back">
         <Link href={lp('/nyheder')} className="inline-link">← Alle nyheder</Link>

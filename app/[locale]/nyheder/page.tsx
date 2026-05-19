@@ -21,8 +21,8 @@ export default async function NyhederPage({ params }: { params: Promise<{ locale
               </span>
               <time dateTime={n.dateIso} className="nyhed-date">{n.date}</time>
             </div>
-            <div className="nyhed-title">{n.title}</div>
-            <p className="nyhed-excerpt">{n.excerpt}</p>
+            <div className="nyhed-title">{locale === 'kl' && n.titleKl ? n.titleKl : n.title}</div>
+            <p className="nyhed-excerpt">{locale === 'kl' && n.excerptKl ? n.excerptKl : n.excerpt}</p>
             <span className="ncm">Læs mere</span>
           </Link>
         ))}
