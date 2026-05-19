@@ -106,11 +106,6 @@ export async function Homepage({ locale }: HomepageProps) {
             <span className="hero-sub">{t('heroSub')}</span>
           </h1>
           <Search locale={locale} />
-          <div className="hero-meta">
-            <span>{t('heroMeta1')}</span>
-            <span>{t('heroMeta2')}</span>
-            <span>{t('heroMeta3')}</span>
-          </div>
         </div>
       </section>
 
