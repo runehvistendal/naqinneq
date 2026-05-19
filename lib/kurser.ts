@@ -1,5 +1,3 @@
-import { wpQuery, formatDato, contentToParagraphs } from './wp';
-
 export interface Kursus {
   slug: string;
   title: string;
@@ -15,105 +13,7 @@ export interface Kursus {
   deadline: string;
 }
 
-// ── GraphQL ────────────────────────────────────────────────────────────────
-
-const KURSER_QUERY = /* GraphQL */ `
-  query GetKurser {
-    kurser(first: 100, where: { status: PUBLISH }) {
-      nodes {
-        slug
-        title
-        excerpt
-        content
-        kursus {
-          dato
-          sted
-          varighed
-          deadline
-          maksDeltagere
-          maalgruppe
-          program
-        }
-      }
-    }
-  }
-`;
-
-interface WpKurserData {
-  kurser: {
-    nodes: Array<{
-      slug: string;
-      title: string;
-      excerpt: string | null;
-      content: string | null;
-      kursus: {
-        dato: string | null;
-        sted: string | null;
-        varighed: string | null;
-        deadline: string | null;
-        maksDeltagere: number | null;
-        maalgruppe: string | null;
-        program: string | null;
-      } | null;
-    }>;
-  };
-}
-
-function parseProgram(text: string | null): { time: string; item: string }[] {
-  if (!text) return [];
-  return text
-    .split('\n')
-    .map(line => line.trim())
-    .filter(Boolean)
-    .map(line => {
-      const match = line.match(/^(\d{1,2}[:.]\d{2}(?:\s*[–-]\s*\d{1,2}[:.]\d{2})?|Dag\s*\d[^:]*)\s*[–:-]\s*(.+)$/);
-      if (match) return { time: match[1].trim(), item: match[2].trim() };
-      return { time: '', item: line };
-    });
-}
-
-function mapWpKursus(node: WpKurserData['kurser']['nodes'][0]): Kursus {
-  const k = node.kursus;
-  const dato = k?.dato ?? null;
-  const dateIso = dato
-    ? `${dato.slice(0, 4)}-${dato.slice(4, 6)}-${dato.slice(6, 8)}`
-    : '';
-
-  return {
-    slug: node.slug,
-    title: node.title,
-    date: dato ? formatDato(dato) : '',
-    dateIso,
-    location: k?.sted ?? '',
-    duration: k?.varighed ?? '',
-    targetGroup: k?.maalgruppe ?? '',
-    excerpt: node.excerpt ? node.excerpt.replace(/<[^>]+>/g, '').trim() : '',
-    description: node.content ? contentToParagraphs(node.content) : [],
-    program: parseProgram(k?.program ?? null),
-    maxParticipants: k?.maksDeltagere ?? 0,
-    deadline: k?.deadline ?? '',
-  };
-}
-
-export async function getKurser(): Promise<Kursus[]> {
-  try {
-    const data = await wpQuery<WpKurserData>(KURSER_QUERY);
-    const nodes = data?.kurser?.nodes ?? [];
-    if (nodes.length === 0) return STATIC_KURSER;
-    return nodes.map(mapWpKursus);
-  } catch {
-    return STATIC_KURSER;
-  }
-}
-
-export async function getKursus(slug: string): Promise<Kursus | undefined> {
-  const all = await getKurser();
-  return all.find(k => k.slug === slug);
-}
-
-// ── Static fallback ────────────────────────────────────────────────────────
-
-export const STATIC_KURSER: Kursus[] = [
+export const KURSER: Kursus[] = [
   {
     slug: 'ordblindedagogik-foraar-2026',
     title: 'Kursus i ordblindepædagogik',
@@ -124,8 +24,8 @@ export const STATIC_KURSER: Kursus[] = [
     targetGroup: 'Lærere, vejledere og pædagogisk personale i folkeskolen',
     excerpt: 'Todageskursus med fokus på tidlig opdagelse af læse- og skrivevanskeligheder og konkrete støttestrategier i undervisningen.',
     description: [
-      'Dette kursus giver dig praktiske redskaber til at opdage og støtte elever med ordblindhed eller andre læse- og skrivevanskeligheder.',
-      'Kurset veksler mellem oplæg, gruppearbejde og øvelser. Du tager hjem med en konkret handleplan for, hvordan du kan styrke din praksis.',
+      'Dette kursus giver dig praktiske redskaber til at opdage og støtte elever med ordblindhed eller andre læse- og skrivevanskeligheder. Du lærer at anvende de screenings- og testmaterialer, som Naqinneq stiller til rådighed, og arbejder med konkrete cases fra hverdagen.',
+      'Kurset veksler mellem oplæg, gruppearbejde og øvelser. Du tager hjem med en konkret handleplan for, hvordan du kan styrke din praksis — uanset om du er lærer, vejleder eller pædagogisk konsulent.',
     ],
     program: [
       { time: 'Dag 1 · 09:00', item: 'Velkomst og introduktion til ordblindhed' },
@@ -152,7 +52,7 @@ export const STATIC_KURSER: Kursus[] = [
     targetGroup: 'Lærere og pædagogisk personale',
     excerpt: 'Kort onlinekursus der viser, hvordan du sætter IntoWords op og bruger det i din undervisning.',
     description: [
-      'IntoWords er et digitalt læse- og skrivehjælpemiddel, der kan gøre en stor forskel for elever med ordblindhed.',
+      'IntoWords er et digitalt læse- og skrivehjælpemiddel, der kan gøre en stor forskel for elever med ordblindhed. På dette kursus lærer du at installere og konfigurere IntoWords på skolens enheder, og du får konkrete ideer til, hvordan du integrerer det i din daglige undervisning.',
       'Kurset foregår online og varer tre timer. Du behøver ingen teknisk erfaring — vi starter fra bunden.',
     ],
     program: [
@@ -167,10 +67,6 @@ export const STATIC_KURSER: Kursus[] = [
   },
 ];
 
-/** @deprecated Brug getKurser() */
-export const KURSER = STATIC_KURSER;
-
-/** Synkront opslag i statisk data — kun til client components (breadcrumb, sidetitel) */
-export function getStaticKursus(slug: string) {
-  return STATIC_KURSER.find(k => k.slug === slug);
+export function getKursus(slug: string): Kursus | undefined {
+  return KURSER.find(k => k.slug === slug);
 }

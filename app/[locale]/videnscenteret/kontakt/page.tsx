@@ -1,12 +1,9 @@
 import type { Metadata } from 'next';
-import { getKontaktpersoner } from '@/lib/kontaktpersoner';
 import { PageBody, Lede, SectionHeading, PersonCard, PersonGrid, Callout, InlineLink } from '@/components/ui/PageBody';
 
 export const metadata: Metadata = { title: 'Kontakt' };
 
-export default async function KontaktPage() {
-  const kontaktpersoner = await getKontaktpersoner();
-
+export default function KontaktPage() {
   return (
     <PageBody>
       <Lede>
@@ -16,16 +13,27 @@ export default async function KontaktPage() {
 
       <SectionHeading>Vejledere</SectionHeading>
       <PersonGrid>
-        {kontaktpersoner.map(p => (
-          <PersonCard
-            key={p.slug}
-            name={p.name}
-            title={p.title}
-            phone={p.phone}
-            email={p.email}
-            initials={p.initials}
-          />
-        ))}
+        <PersonCard
+          name="Aviâja Olsen"
+          title="Specialvejleder, ordblindhed"
+          phone="+299 34 50 11"
+          email="ao@nanoq.gl"
+          initials="AO"
+        />
+        <PersonCard
+          name="Poul Erik Hansen"
+          title="Konsulent, læse- og skriveteknologi"
+          phone="+299 34 50 14"
+          email="peh@nanoq.gl"
+          initials="PH"
+        />
+        <PersonCard
+          name="Nivi Fleischer"
+          title="Koordinator, kurser og events"
+          phone="+299 34 50 17"
+          email="nf@nanoq.gl"
+          initials="NF"
+        />
       </PersonGrid>
 
       <SectionHeading>Videnscenteret</SectionHeading>

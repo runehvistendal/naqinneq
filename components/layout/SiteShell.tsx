@@ -12,8 +12,8 @@ import { TtsStrip } from './TtsStrip';
 import { PageFoot } from './PageFoot';
 import { useAccessibility } from '@/components/providers/AccessibilityProvider';
 import { PAGE_MAP } from '@/lib/nav';
-import { getStaticNyhed } from '@/lib/nyheder';
-import { getStaticKursus } from '@/lib/kurser';
+import { getNyhed } from '@/lib/nyheder';
+import { getKursus } from '@/lib/kurser';
 import { speakDanish, stopDanish, initDaSelectionPopup } from '@/lib/da-tts';
 import { initMartha, readElement, clearTTS as clearMartha, onMarthaStop } from '@/lib/martha-tts';
 
@@ -43,8 +43,8 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
   const page = PAGE_MAP.get(pathname);
 
   function getDynamicTitle(): string | null {
-    if (pathname.startsWith('/nyheder/')) return getStaticNyhed(pathname.slice('/nyheder/'.length))?.title ?? 'Nyhed';
-    if (pathname.startsWith('/ressourcer/kurser/')) return getStaticKursus(pathname.slice('/ressourcer/kurser/'.length))?.title ?? 'Kursus';
+    if (pathname.startsWith('/nyheder/')) return getNyhed(pathname.slice('/nyheder/'.length))?.title ?? 'Nyhed';
+    if (pathname.startsWith('/ressourcer/kurser/')) return getKursus(pathname.slice('/ressourcer/kurser/'.length))?.title ?? 'Kursus';
     return null;
   }
   const dynamicTitle = !page ? getDynamicTitle() : null;

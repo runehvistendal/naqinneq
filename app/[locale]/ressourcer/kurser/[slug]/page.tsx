@@ -1,18 +1,16 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getKursus, getKurser } from '@/lib/kurser';
+import { getKursus, KURSER } from '@/lib/kurser';
 import { PageBody, Lede, SectionHeading, Callout } from '@/components/ui/PageBody';
 import { KursusTilmelding } from '@/components/ui/KursusTilmelding';
 
 export async function generateStaticParams() {
-  const kurser = await getKurser();
-  return kurser.map(k => ({ slug: k.slug }));
+  return KURSER.map(k => ({ slug: k.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const kursus = await getKursus(slug);
-  return { title: kursus?.title ?? 'Kursus' };
+  return { title: getKursus(slug)?.title ?? 'Kursus' };
 }
 
 export default async function KursusPage({
@@ -21,7 +19,7 @@ export default async function KursusPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { slug } = await params;
-  const kursus = await getKursus(slug);
+  const kursus = getKursus(slug);
   if (!kursus) notFound();
 
   return (
@@ -52,28 +50,22 @@ export default async function KursusPage({
       <div className="kursus-info-grid">
         <div className="kv">
           <div>Målgruppe</div><div>{kursus.targetGroup}</div>
-          {kursus.maxParticipants > 0 && (
-            <><div>Maks. deltagere</div><div>{kursus.maxParticipants}</div></>
-          )}
+          <div>Maks. deltagere</div><div>{kursus.maxParticipants}</div>
         </div>
       </div>
 
       <SectionHeading>Om kurset</SectionHeading>
       {kursus.description.map((para, i) => <p key={i}>{para}</p>)}
 
-      {kursus.program.length > 0 && (
-        <>
-          <SectionHeading>Program</SectionHeading>
-          <div className="kursus-program">
-            {kursus.program.map((item, i) => (
-              <div key={i} className="kursus-program-row">
-                <div className="kursus-program-time">{item.time}</div>
-                <div className="kursus-program-item">{item.item}</div>
-              </div>
-            ))}
+      <SectionHeading>Program</SectionHeading>
+      <div className="kursus-program">
+        {kursus.program.map((item, i) => (
+          <div key={i} className="kursus-program-row">
+            <div className="kursus-program-time">{item.time}</div>
+            <div className="kursus-program-item">{item.item}</div>
           </div>
-        </>
-      )}
+        ))}
+      </div>
 
       <SectionHeading>Tilmeld dig</SectionHeading>
       <KursusTilmelding kursusTitle={kursus.title} />
