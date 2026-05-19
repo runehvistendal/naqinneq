@@ -140,7 +140,7 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
                   aria-pressed={ttsActive}
                 >
                   {ttsActive
-                    ? (locale === 'kl' ? '⏹ Stop' : '⏹ Stop')
+                    ? (locale === 'kl' ? 'Stop oplæsning' : 'Stop oplæsning')
                     : (locale === 'kl' ? '🔊 Atuarneq' : '🔊 Læs op')}
                 </button>
                 {children}

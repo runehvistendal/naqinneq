@@ -1118,5 +1118,14 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 }
 .page-tts-btn:hover { border-color: var(--primary); color: var(--primary); }
 .page-tts-btn.is-active {
-  background: var(--primary); color: #fff; border-color: var(--primary);
+  background: var(--accent); color: #fff; border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(194,83,28,.3);
+  transition: none;
+}
+.page-tts-btn.is-active::before {
+  content: '';
+  display: block;
+  width: 7px; height: 7px; flex-shrink: 0;
+  border-radius: 50%; background: #fff;
+  animation: tts-pulse 0.9s ease-in-out infinite;
 }
