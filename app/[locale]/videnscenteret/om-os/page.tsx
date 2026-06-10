@@ -15,7 +15,7 @@ export default function OmOsPage() {
       <SectionHeading>Baggrund</SectionHeading>
       <p>
         Naqinneq er etableret som en del af den nationale handlingsplan mod
-        ordblindhed og læse- og skrivevanskeligheder 2023–2029. I handlingsplanen
+        ordblindhed og læse- og skrivevanskeligheder 2025–2029. I handlingsplanen
         har man fokus på ordblindhed i første omgang. Efterhånden igangsættes
         initiativer for andre læse- og skrivevanskeligheder.
       </p>
