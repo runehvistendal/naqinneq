@@ -864,7 +864,7 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 }
 .nyhed-excerpt { font-size: 14px; color: var(--ink-2); margin: 0 0 20px; }
 .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.article-img { width: 100%; max-width: 560px; border-radius: 8px; margin: 8px 0 24px; display: block; }
+.article-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin: 8px auto 28px; display: block; }
 .article-back { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 
 /* ─── Kurser ─── */
