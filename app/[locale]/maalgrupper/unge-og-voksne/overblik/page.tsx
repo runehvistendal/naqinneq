@@ -36,8 +36,8 @@ export default async function UngeOgVoksneOverblikPage({ params }: { params: Pro
 
       <SectionHeading>Du er ikke alene</SectionHeading>
       <p>
-        Ordblindhed er ikke et tegn på lav intelligens — det er en neurologisk
-        variation i, hvordan hjernen bearbejder sprog. Mange mennesker med
+        Du kan sagtens være både klog og ordblind. Ordblindhed handler kun om,
+        hvordan hjernen kobler bogstaver og lyde. Mange mennesker med
         ordblindhed klarer sig godt i uddannelse og arbejdsliv med den rette støtte.
       </p>
       <CTARow>
