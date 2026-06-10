@@ -23,6 +23,8 @@ function NewsCard({
   excerpt,
   href,
   readMore = 'Læs mere',
+  image,
+  imageAlt,
 }: {
   accent: NewsAccent;
   tag: string;
@@ -31,10 +33,17 @@ function NewsCard({
   excerpt: string;
   href: string;
   readMore?: string;
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <article className="nc">
-      <div className={`nc-accent nc-accent-${accent}`} />
+      {image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <div className="nc-thumb"><img src={image} alt={imageAlt ?? ''} /></div>
+      ) : (
+        <div className={`nc-thumb nc-thumb-placeholder-${accent}`} />
+      )}
       <div className="ncb">
         <span className={`ntag ntag-${accent}`}>{tag}</span>
         <div className="nct">{title}</div>
@@ -161,6 +170,8 @@ export async function Homepage({ locale }: HomepageProps) {
                 excerpt={isKl && nyhed.excerptKl ? nyhed.excerptKl : nyhed.excerpt}
                 href={lp(locale, '/nyheder/' + nyhed.slug)}
                 readMore={isKl ? 'Atuaruk' : 'Læs mere'}
+                image={nyhed.image}
+                imageAlt={nyhed.imageAlt}
               />
             );
           })}

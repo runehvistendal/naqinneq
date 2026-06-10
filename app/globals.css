@@ -792,10 +792,11 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
   transition: box-shadow .15s, transform .15s;
 }
 .nc:hover { box-shadow: 0 8px 28px rgba(12,62,74,0.10); transform: translateY(-2px); }
-.nc-accent { height: 4px; }
-.nc-accent-teal  { background: var(--primary); }
-.nc-accent-navy  { background: #1c3a52; }
-.nc-accent-amber { background: #d4820a; }
+.nc-thumb { height: 160px; overflow: hidden; }
+.nc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nc-thumb-placeholder-teal  { background: linear-gradient(135deg, var(--primary) 0%, #028090 100%); }
+.nc-thumb-placeholder-navy  { background: linear-gradient(135deg, #1c3a52 0%, #2a5478 100%); }
+.nc-thumb-placeholder-amber { background: linear-gradient(135deg, #d4820a 0%, #e89c20 100%); }
 .ncb { padding: 22px; }
 .ntag {
   display: inline-block; font-size: 10px; font-weight: 600;
