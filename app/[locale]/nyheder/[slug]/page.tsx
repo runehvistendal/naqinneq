@@ -37,11 +37,7 @@ export default async function NyhedPage({
 
       {nyhed.image && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={nyhed.image}
-          alt={nyhed.imageAlt ?? ''}
-          style={{ width: '100%', maxWidth: 560, borderRadius: 8, margin: '8px 0 20px' }}
-        />
+        <img src={nyhed.image} alt={nyhed.imageAlt ?? ''} className="article-img" />
       )}
 
       {body.map((para, i) => (

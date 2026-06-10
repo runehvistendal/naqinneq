@@ -42,7 +42,7 @@ function NewsCard({
         // eslint-disable-next-line @next/next/no-img-element
         <div className="nc-thumb"><img src={image} alt={imageAlt ?? ''} /></div>
       ) : (
-        <div className={`nc-thumb nc-thumb-placeholder-${accent}`} />
+        <div className="nc-thumb thumb-placeholder" />
       )}
       <div className="ncb">
         <span className={`ntag ntag-${accent}`}>{tag}</span>

@@ -792,11 +792,9 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
   transition: box-shadow .15s, transform .15s;
 }
 .nc:hover { box-shadow: 0 8px 28px rgba(12,62,74,0.10); transform: translateY(-2px); }
+.thumb-placeholder { background: linear-gradient(135deg, var(--primary) 0%, #028090 100%); }
 .nc-thumb { height: 160px; overflow: hidden; }
 .nc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.nc-thumb-placeholder-teal  { background: linear-gradient(135deg, var(--primary) 0%, #028090 100%); }
-.nc-thumb-placeholder-navy  { background: linear-gradient(135deg, #1c3a52 0%, #2a5478 100%); }
-.nc-thumb-placeholder-amber { background: linear-gradient(135deg, #d4820a 0%, #e89c20 100%); }
 .ncb { padding: 22px; }
 .ntag {
   display: inline-block; font-size: 10px; font-weight: 600;
@@ -845,12 +843,19 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 /* ─── Nyheder ─── */
 .nyhed-list { display: flex; flex-direction: column; gap: 16px; }
 .nyhed-item {
-  display: block; text-decoration: none; color: var(--ink);
+  display: flex; text-decoration: none; color: var(--ink);
   border: 1.5px solid var(--line); border-radius: var(--radius-2);
-  padding: 28px; background: var(--paper);
+  overflow: hidden; background: var(--paper);
   transition: box-shadow .15s, transform .15s;
 }
 .nyhed-item:hover { box-shadow: 0 6px 20px rgba(12,62,74,0.10); transform: translateY(-2px); }
+.nyhed-thumb { width: 200px; flex-shrink: 0; }
+.nyhed-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 600px) {
+  .nyhed-item { flex-direction: column; }
+  .nyhed-thumb { width: 100%; height: 140px; }
+}
+.nyhed-content { flex: 1; padding: 28px; }
 .nyhed-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .nyhed-date { font-size: 12px; color: var(--muted); }
 .nyhed-title {
@@ -859,6 +864,7 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 }
 .nyhed-excerpt { font-size: 14px; color: var(--ink-2); margin: 0 0 20px; }
 .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.article-img { width: 100%; max-width: 560px; border-radius: 8px; margin: 8px 0 24px; display: block; }
 .article-back { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 
 /* ─── Kurser ─── */
