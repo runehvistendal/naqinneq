@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { PageBody, Lede, SectionHeading, Two, Card, CTARow, CTA, Callout, InlineLink } from '@/components/ui/PageBody';
+import { PageBody, Lede, SectionHeading, Two, Card, Callout, InlineLink } from '@/components/ui/PageBody';
 
 export const metadata: Metadata = { title: 'Ordblindhed' };
 
 export default async function OrdblindhedPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const lp = (p: string) => locale === 'kl' ? `/kl${p}` : p;
+  await params;
 
   return (
     <PageBody>
@@ -51,17 +50,6 @@ export default async function OrdblindhedPage({ params }: { params: Promise<{ lo
           </ul>
         </Card>
       </Two>
-
-      <SectionHeading>Hvad gør jeg ved en mistanke?</SectionHeading>
-      <p>
-        Start med en screening. Den viser, om der er grund til at gå videre
-        med en egentlig ordblindetest. Screeningen tager ca. 15 minutter og
-        kan tages på grønlandsk eller dansk.
-      </p>
-      <CTARow>
-        <CTA primary href={lp('/tests/screening-for-ordblindhed')}>Start screening</CTA>
-        <CTA href={lp('/tests/den-groenlandske-ordblindetest')}>Den grønlandske ordblindetest</CTA>
-      </CTARow>
 
       <Callout>
         Teksten er stillet til rådighed af{' '}

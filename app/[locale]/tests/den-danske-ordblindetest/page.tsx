@@ -7,8 +7,8 @@ export default function DanskeOrdblindetestPage() {
   return (
     <PageBody>
       <Lede>
-        Uddannelsesstyrelsen arbejder på at give adgang til den danske nationale
-        ordblindetest for dansksprogede borgere i Grønland.
+        Grønland har fået adgang til den danske nationale ordblindetest. Vi
+        arbejder på, hvordan adgangen tildeles i praksis.
       </Lede>
 
       <SectionHeading>Hvorfor en dansk ordblindetest?</SectionHeading>
@@ -22,30 +22,17 @@ export default function DanskeOrdblindetestPage() {
         for ordblindhed og den rette hjælp.
       </p>
 
-      <SectionHeading>Pilottest og fremtidsplaner</SectionHeading>
+      <SectionHeading>Hvor er vi i arbejdet?</SectionHeading>
       <p>
-        Uddannelsesstyrelsen planlægger en pilottest af den danske ordblindetest
-        for at vurdere, om den er anvendelig i en grønlandsk kontekst.
+        Grønland har formelt set fået adgang til den danske nationale
+        ordblindetest. Vi arbejder nu sammen med de danske styrelser STIL
+        (Styrelsen for It og Læring) og STUK (Styrelsen for Undervisning og
+        Kvalitet) om, hvordan grønlandske borgere igen får adgang til testen i
+        praksis.
       </p>
       <p>
-        Hvis resultaterne viser, at testen er nyttig, arbejdes der på vedvarende
-        adgang. Testen skal bruges som supplement til de øvrige testmaterialer,
-        så dansksprogede borgere i Grønland også har mulighed for hjælp og
-        testning. Den vil kunne bruges til udredning af flersprogede borgere og
-        dækker børn, unge og voksne.
-      </p>
-
-      <SectionHeading>Frit tilgængeligt materiale</SectionHeading>
-      <p>
-        Der findes dansksprogede testmaterialer, som frit kan anvendes allerede
-        nu — fx materialet fra Københavns Universitet:{' '}
-        <InlineLink href="https://laes.hum.ku.dk">laes.hum.ku.dk</InlineLink>.
-      </p>
-      <p>
-        Det er de enkelte skoler, uddannelsesinstitutioner og kommuner, der har
-        ansvar for at sørge for, at sådanne test bruges korrekt. Skole- og
-        uddannelsesledere skal sikre, at der er tilknyttet relevante fagpersoner,
-        så testene anvendes på en fagligt forsvarlig måde.
+        Arbejdet forventes færdiggjort i perioden 2026–2027. Når adgangen er på
+        plads, finder du al relevant information på denne side.
       </p>
 
       <Callout>

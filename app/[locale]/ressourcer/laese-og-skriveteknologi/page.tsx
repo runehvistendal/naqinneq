@@ -8,8 +8,7 @@ export default function IntoWordsPage() {
     <PageBody>
       <Lede>
         IntoWords er et kompenserende it-redskab til borgere med læse- og
-        skrivevanskeligheder. Vi har indkøbt licenser til alle grønlandske
-        borgere — og adgang gives løbende.
+        skrivevanskeligheder.
       </Lede>
 
       <SectionHeading>Hvem har adgang?</SectionHeading>
@@ -20,15 +19,14 @@ export default function IntoWordsPage() {
       </p>
       <ul className="bullets">
         <li>Skoler og uddannelser: adgang allerede givet</li>
-        <li>Arbejdsmarkedet: forventet forår 2026</li>
-        <li>Enkeltborgere: forventet efterår 2026</li>
+        <li>Arbejdsmarkedet: forventet forår 2027</li>
+        <li>Enkeltborgere: forventet efterår 2027</li>
       </ul>
 
       <SectionHeading>Hvad kan IntoWords?</SectionHeading>
       <Two>
         <Card title="Oplæsning" tag="Kalaallisut · Dansk · Engelsk">
-          IntoWords kan læse tekst op i flere sprog — også blandet i samme
-          dokument.
+          IntoWords kan læse tekst op i flere sprog.
         </Card>
         <Card title="Ordforslag" tag="Mens du skriver">
           Programmet foreslår ord ud fra de første bogstaver, så det bliver
@@ -47,7 +45,7 @@ export default function IntoWordsPage() {
       </p>
 
       <CTARow>
-        <CTA primary>Hent IntoWords</CTA>
+        <CTA primary href="https://www.vitec-mv.com/programmer/download/?f0=12194">Hent IntoWords</CTA>
         <CTA href="/ressourcer/vejledninger">Vejledninger</CTA>
       </CTARow>
 

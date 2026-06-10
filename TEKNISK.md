@@ -1,6 +1,6 @@
 # Teknisk beskrivelse — naqinneq.gl
 
-**Sidst opdateret:** maj 2026  
+**Sidst opdateret:** juni 2026  
 **Ansvarlig:** Rune Hvistendal  
 **Liveadresse:** https://sila.gl
 
@@ -118,8 +118,8 @@ naqinneq/
 │           └── sprogforstaaelse/
 │
 ├── components/                   ← Genbrugelige React-komponenter
-│   ├── home/                     ← Forsidespecifikke komponenter
-│   ├── layout/                   ← Topbar, sidebar, navigation, TTS
+│   ├── home/                     ← Forsidespecifikke komponenter (Search.tsx m.fl.)
+│   ├── layout/                   ← Topbar (inkl. søgeikon-toggle), sidebar, navigation, TTS
 │   └── ui/                       ← PageBody, Card, CTARow m.fl.
 │
 ├── lib/                          ← ★ Her redigeres indhold ★

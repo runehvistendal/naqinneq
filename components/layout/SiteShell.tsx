@@ -9,7 +9,6 @@ import { Breadcrumb } from './Breadcrumb';
 import { AccessPanel } from './AccessPanel';
 import { MobileDrawer } from './MobileDrawer';
 import { TtsStrip } from './TtsStrip';
-import { PageFoot } from './PageFoot';
 import { useAccessibility } from '@/components/providers/AccessibilityProvider';
 import { PAGE_MAP } from '@/lib/nav';
 import { getNyhed } from '@/lib/nyheder';
@@ -168,9 +167,6 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
                 </button>
                 {children}
               </article>
-              {/* PageFoot excluded from TTS */}
-              <PageFoot />
-
             </main>
           </div>
         )}
