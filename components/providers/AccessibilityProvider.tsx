@@ -5,11 +5,11 @@ import { createContext, useContext, useEffect, useState } from 'react';
 export interface AccessSettings {
   size: 's' | 'm' | 'l' | 'xl';
   line: 'tight' | 'normal' | 'loose';
-  font: 'sans' | 'serif' | 'dys';
+  font: 'lexend' | 'verdana' | 'atkinson' | 'dys';
   theme: 'light' | 'sepia' | 'dark';
 }
 
-const defaults: AccessSettings = { size: 'm', line: 'normal', font: 'sans', theme: 'light' };
+const defaults: AccessSettings = { size: 'm', line: 'normal', font: 'lexend', theme: 'light' };
 
 interface AccessCtx {
   settings: AccessSettings;

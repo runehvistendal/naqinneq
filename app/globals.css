@@ -4,7 +4,7 @@
 */
 
 /* ─── Self-hosted fonts (Google Fonts fallback via preconnect in layout) ─── */
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* OpenDyslexic — CDN, loaded only when .f-dys is active */
 @font-face {
@@ -104,22 +104,23 @@ a { text-decoration: none; }
 .ln-loose  { --lh-base: 1.85; }
 
 /* ─── Font hooks ─── */
-.f-serif .pagebody,
-.f-serif p,
-.f-serif li,
-.f-serif .lede { font-family: var(--ff-display); }
+.f-lexend,
+.f-lexend p, .f-lexend li, .f-lexend button, .f-lexend input,
+.f-lexend .pagebody, .f-lexend .lede { font-family: 'Lexend', sans-serif; }
+
+.f-verdana,
+.f-verdana p, .f-verdana li, .f-verdana button, .f-verdana input,
+.f-verdana .pagebody, .f-verdana .lede { font-family: Verdana, Geneva, sans-serif; }
+
+.f-atkinson,
+.f-atkinson p, .f-atkinson li, .f-atkinson button, .f-atkinson input,
+.f-atkinson .pagebody, .f-atkinson .lede { font-family: 'Atkinson Hyperlegible', sans-serif; }
 
 .f-dys,
-.f-dys .pagebody,
-.f-dys p,
-.f-dys h1,
-.f-dys h2,
-.f-dys h3,
-.f-dys li,
-.f-dys button,
-.f-dys input,
-.f-dys .brand-name,
-.f-dys .lede { font-family: 'OpenDyslexic', 'Public Sans', sans-serif !important; letter-spacing: 0.01em; }
+.f-dys p, .f-dys h1, .f-dys h2, .f-dys h3,
+.f-dys li, .f-dys button, .f-dys input,
+.f-dys .pagebody, .f-dys .brand-name,
+.f-dys .lede { font-family: 'OpenDyslexic', sans-serif !important; letter-spacing: 0.01em; }
 
 /* ─── Theme hooks ─── */
 .tm-light  { /* default */ }
