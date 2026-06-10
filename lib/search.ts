@@ -1,3 +1,5 @@
+import { NYHEDER } from './nyheder';
+
 export interface SearchEntry {
   id: string;
   title: string;
@@ -5,7 +7,7 @@ export interface SearchEntry {
   path: string;
 }
 
-export const SEARCH_INDEX: SearchEntry[] = [
+const STATIC_PAGES: SearchEntry[] = [
   { id: 'ordblindhed',     title: 'Hvad er ordblindhed?',                  hint: 'Vidensområder',     path: '/vidensomraader/ordblindhed' },
   { id: 'skriftsprog',     title: 'Skriftsprogsvanskeligheder',             hint: 'Vidensområder',     path: '/vidensomraader/skriftsprogsvanskeligheder' },
   { id: 'sprogforstaaelse', title: 'Sprogforståelse',                       hint: 'Vidensområder',     path: '/vidensomraader/sprogforstaaelse' },
@@ -28,3 +30,12 @@ export const SEARCH_INDEX: SearchEntry[] = [
   { id: 'vc-indsats',      title: 'Indsatsområder',                         hint: 'Videnscenteret',    path: '/videnscenteret/indsatsomraader' },
   { id: 'vc-kontakt',      title: 'Kontakt',                                hint: 'Videnscenteret',    path: '/videnscenteret/kontakt' },
 ];
+
+const NEWS_ENTRIES: SearchEntry[] = NYHEDER.map(n => ({
+  id: `nyhed-${n.slug}`,
+  title: n.title,
+  hint: `${n.tag} · ${n.date}`,
+  path: `/nyheder/${n.slug}`,
+}));
+
+export const SEARCH_INDEX: SearchEntry[] = [...STATIC_PAGES, ...NEWS_ENTRIES];
