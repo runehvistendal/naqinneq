@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { BrandMark } from '@/components/ui/BrandMark';
-import { IconSpeaker, IconAcc, IconCaret } from '@/components/ui/Icons';
+import { IconSpeaker, IconAcc, IconCaret, IconSearch } from '@/components/ui/Icons';
+import { Search } from '@/components/home/Search';
 import { NAV } from '@/lib/nav';
 
 interface TopbarProps {
@@ -29,6 +30,7 @@ function getOtherLocale(locale: string) {
 export function Topbar({ locale, pathname, ttsActive, onTTS, onOpenAccess, onMenu }: TopbarProps) {
   const t = useTranslations();
   const [openId, setOpenId] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
 
@@ -162,12 +164,30 @@ export function Topbar({ locale, pathname, ttsActive, onTTS, onOpenAccess, onMen
             })}
           </nav>
 
+          {/* Search icon */}
+          <button
+            className={'topbar-search-btn' + (searchOpen ? ' is-active' : '')}
+            onClick={() => setSearchOpen(v => !v)}
+            aria-label={t('search.placeholder')}
+            aria-expanded={searchOpen}
+          >
+            <IconSearch />
+          </button>
+
           {/* Mobile hamburger — shown via CSS at <768px */}
           <button className="hamburger" onClick={onMenu} aria-label="Åbn menu">
             <span /><span /><span />
           </button>
         </div>
       </div>
+      {/* Search drawer */}
+      {searchOpen && (
+        <div className="topbar-search-drawer">
+          <div className="topbar-search-inner">
+            <Search locale={locale} />
+          </div>
+        </div>
+      )}
     </header>
   );
 }
