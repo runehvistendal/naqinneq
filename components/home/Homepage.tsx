@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { Search } from './Search';
 import { IconArrow } from '@/components/ui/Icons';
+import { NYHEDER } from '@/lib/nyheder';
 
 type NewsAccent = 'teal' | 'navy' | 'amber';
 
@@ -21,6 +22,7 @@ function NewsCard({
   date,
   excerpt,
   href,
+  readMore = 'Læs mere',
 }: {
   accent: NewsAccent;
   tag: string;
@@ -28,6 +30,7 @@ function NewsCard({
   date: string;
   excerpt: string;
   href: string;
+  readMore?: string;
 }) {
   return (
     <article className="nc">
@@ -37,7 +40,7 @@ function NewsCard({
         <div className="nct">{title}</div>
         <div className="ncd">{date}</div>
         <p className="nce">{excerpt}</p>
-        <Link href={href} className="ncm">Læs mere</Link>
+        <Link href={href} className="ncm">{readMore}</Link>
       </div>
     </article>
   );
@@ -143,30 +146,24 @@ export async function Homepage({ locale }: HomepageProps) {
           <Link href={lp(locale, '/nyheder')} className="section-label-link">{t('seAlle')}</Link>
         </div>
         <div className="news-grid">
-          <NewsCard
-            accent="teal"
-            tag={t('n1Tag')}
-            title={t('n1Title')}
-            date={t('n1Date')}
-            excerpt={t('n1Excerpt')}
-            href={lp(locale, '/videnscenteret/indsatsomraader')}
-          />
-          <NewsCard
-            accent="navy"
-            tag={t('n2Tag')}
-            title={t('n2Title')}
-            date={t('n2Date')}
-            excerpt={t('n2Excerpt')}
-            href={lp(locale, '/tests/groenlandsk-ordblindetest')}
-          />
-          <NewsCard
-            accent="amber"
-            tag={t('n3Tag')}
-            title={t('n3Title')}
-            date={t('n3Date')}
-            excerpt={t('n3Excerpt')}
-            href={lp(locale, '/videnscenteret/kurser')}
-          />
+          {NYHEDER.slice(0, 3).map(nyhed => {
+            const accent: NewsAccent =
+              nyhed.tag === 'Nyhed' ? 'teal' :
+              nyhed.tag === 'Ressource' ? 'navy' : 'amber';
+            const isKl = locale === 'kl';
+            return (
+              <NewsCard
+                key={nyhed.slug}
+                accent={accent}
+                tag={nyhed.tag}
+                title={isKl && nyhed.titleKl ? nyhed.titleKl : nyhed.title}
+                date={nyhed.date}
+                excerpt={isKl && nyhed.excerptKl ? nyhed.excerptKl : nyhed.excerpt}
+                href={lp(locale, '/nyheder/' + nyhed.slug)}
+                readMore={isKl ? 'Atuaruk' : 'Læs mere'}
+              />
+            );
+          })}
         </div>
       </section>
 
