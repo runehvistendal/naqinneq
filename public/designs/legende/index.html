@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Naqinneq.gl — Videnscenter for ordblindhed</title>
+  <meta name="description" content="Naqinneq.gl — et samlet sted for læsning, hjælp og vejledning i Grønland. Videnscenter for ordblindhed og læse- og skrivevanskeligheder.">
+  <meta name="theme-color" content="#7c5cff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Læsevenlig skrift (tilgængelighedspanel) -->
+  <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+
+  <link rel="stylesheet" href="/designs/legende/style.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🐻‍❄️</text></svg>">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Gå til indhold</a>
+
+  <!-- Header / navigation bygges af app.js -->
+  <header id="site-header" class="site-header"></header>
+
+  <!-- Sideindhold renderes her -->
+  <main id="main-content" class="site-main" tabindex="-1"></main>
+
+  <!-- Footer bygges af app.js -->
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <!-- Overlays (søgning, tilgængelighed, min rejse, maskot) bygges af app.js -->
+  <div id="overlays"></div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <div id="toast-root" aria-live="polite"></div>
+
+  <details class="design-switch" title="Skift mellem design-prototyperne">
+    <summary>⇄ Skift design</summary>
+    <div class="ds-menu">
+      <a href="/">Standard (nuværende)</a>
+      <a href="/designs/arktisk">Design A — Arktisk &amp; levende</a>
+      <a href="/designs/legende">Design B — Legende &amp; gamificeret</a>
+    </div>
+  </details>
+  <style>
+    .design-switch { position: fixed; right: 1rem; bottom: 1rem; z-index: 320; }
+    .design-switch summary {
+      cursor: pointer; list-style: none; display: inline-block;
+      font-size: .78rem; font-weight: 700;
+      padding: .55rem 1rem; border-radius: 999px;
+      background: #fff; color: #2b2350;
+      border: 2px solid #2b2350; box-shadow: 3px 3px 0 #2b2350;
+    }
+    .design-switch summary::-webkit-details-marker { display: none; }
+    .design-switch summary:hover { background: #ffc83d; }
+    .design-switch .ds-menu {
+      position: absolute; bottom: calc(100% + 10px); right: 0;
+      display: flex; flex-direction: column; min-width: 230px;
+      background: #fff; border: 2px solid #2b2350;
+      border-radius: 14px; box-shadow: 4px 4px 0 #2b2350;
+      padding: 6px; white-space: nowrap;
+    }
+    .design-switch .ds-menu a {
+      padding: .55rem .8rem; border-radius: 9px; font-size: .82rem; font-weight: 600;
+      color: #2b2350; text-decoration: none;
+    }
+    .design-switch .ds-menu a:hover { background: #ffc83d; }
+  </style>
+
+  <script src="/designs/shared/content.js"></script>
+  <script src="/designs/shared/core.js"></script>
+  <script src="/designs/legende/app.js"></script>
+</body>
+</html>
