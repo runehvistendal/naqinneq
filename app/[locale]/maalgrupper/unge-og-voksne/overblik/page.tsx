@@ -17,8 +17,8 @@ export default async function UngeOgVoksneOverblikPage({ params }: { params: Pro
       <SectionHeading>Find den rette hjælp</SectionHeading>
       <Two>
         <Card title="Er du ordblind?" href={lp('/tests/screening-for-ordblindhed')}>
-          Tag en gratis screening og find ud af, om dine vanskeligheder med
-          læsning og skrivning kan skyldes ordblindhed.
+          Læs om screening og test — og om hvordan du kan blive udredt, hvis
+          du har svært ved at læse og skrive.
         </Card>
         <Card title="Digitale hjælpemidler" href={lp('/ressourcer/laese-og-skriveteknologi')}>
           IntoWords kan hjælpe dig med at læse tekster op og skrive bedre —
@@ -36,12 +36,12 @@ export default async function UngeOgVoksneOverblikPage({ params }: { params: Pro
 
       <SectionHeading>Du er ikke alene</SectionHeading>
       <p>
-        Ordblindhed er ikke et tegn på lav intelligens — det er en neurologisk
-        variation i, hvordan hjernen bearbejder sprog. Mange mennesker med
+        Du kan sagtens være både klog og ordblind. Ordblindhed handler kun om,
+        hvordan hjernen kobler bogstaver og lyde. Mange mennesker med
         ordblindhed klarer sig godt i uddannelse og arbejdsliv med den rette støtte.
       </p>
       <CTARow>
-        <CTA primary href={lp('/tests/screening-for-ordblindhed')}>Tag en screening</CTA>
+        <CTA primary href={lp('/tests/screening-for-ordblindhed')}>Læs om screening og test</CTA>
         <CTA href={lp('/vidensomraader/ordblindhed')}>Læs om ordblindhed</CTA>
       </CTARow>
 

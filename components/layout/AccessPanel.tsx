@@ -79,7 +79,7 @@ export function AccessPanel({ open, onClose }: AccessPanelProps) {
             <Seg<'font'>
               value={settings.font}
               onChange={v => set('font', v)}
-              options={[['sans', t('f_sans')], ['serif', t('f_serif')], ['dys', t('f_dys')]]}
+              options={[['lexend', t('f_lexend')], ['verdana', t('f_verdana')], ['atkinson', t('f_atkinson')], ['dys', t('f_dys')]]}
             />
           </div>
           <div className="acc-row">

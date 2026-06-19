@@ -12,28 +12,35 @@ export default function KontaktPage() {
         kalaallisut og dansk.
       </Lede>
 
-      <SectionHeading>Vejledere</SectionHeading>
+      <SectionHeading>Medarbejdere</SectionHeading>
       <PersonGrid>
         <PersonCard
-          name="Aviâja Olsen"
-          title="Specialvejleder, ordblindhed"
-          phone="+299 34 50 11"
-          email="ao@nanoq.gl"
-          initials="AO"
+          name="Mette Larsen Lyberth"
+          title="Fg. afdelingschef for pædagogisk udvikling"
+          phone="+299 34 62 78"
+          email="mell@nanoq.gl"
+          initials="ML"
         />
         <PersonCard
-          name="Poul Erik Hansen"
-          title="Konsulent, læse- og skriveteknologi"
-          phone="+299 34 50 14"
-          email="peh@nanoq.gl"
-          initials="PH"
+          name="Karina Meincke"
+          title="Skolekonsulent Dysleksi"
+          phone="+299 34 62 99"
+          email="kame@nanoq.gl"
+          initials="KM"
         />
         <PersonCard
-          name="Nivi Fleischer"
-          title="Koordinator, kurser og events"
-          phone="+299 34 50 17"
-          email="nf@nanoq.gl"
-          initials="NF"
+          name="Parnûna K. Lynge"
+          title="Projektkonsulent, dysleksi"
+          phone="+299 34 62 56"
+          email="prly@nanoq.gl"
+          initials="PL"
+        />
+        <PersonCard
+          name="Birthe Lyberth"
+          title="Projektkonsulent, dysleksi"
+          phone="+299 34 62 53"
+          email="bily@nanoq.gl"
+          initials="BL"
         />
       </PersonGrid>
 

@@ -26,8 +26,7 @@ export default async function NyhedPage({
   const accentClass = nyhed.tag === 'Nyhed' ? 'teal' : nyhed.tag === 'Ressource' ? 'navy' : 'amber';
 
   const isKl = locale === 'kl';
-  const title = isKl && nyhed.titleKl ? nyhed.titleKl : nyhed.title;
-  const body  = isKl && nyhed.bodyKl  ? nyhed.bodyKl  : nyhed.body;
+  const body = isKl && nyhed.bodyKl ? nyhed.bodyKl : nyhed.body;
 
   return (
     <PageBody>
@@ -36,11 +35,22 @@ export default async function NyhedPage({
         <time dateTime={nyhed.dateIso} className="nyhed-date">{nyhed.date}</time>
       </div>
 
-      <h1 className="article-title">{title}</h1>
+      {nyhed.image && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={nyhed.image} alt={nyhed.imageAlt ?? ''} className="article-img" />
+      )}
 
       {body.map((para, i) => (
         <p key={i}>{para}</p>
       ))}
+
+      {nyhed.attachment && (
+        <p style={{ marginTop: 24 }}>
+          <a href={nyhed.attachment.href} className="inline-link" download>
+            ⬇ {isKl && nyhed.attachment.labelKl ? nyhed.attachment.labelKl : nyhed.attachment.label}
+          </a>
+        </p>
+      )}
 
       {nyhed.videoUrl && (
         <PageVideo

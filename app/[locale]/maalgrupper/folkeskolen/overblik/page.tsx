@@ -18,8 +18,8 @@ export default async function FolkeskolenOverblikPage({ params }: { params: Prom
       <SectionHeading>Hvad kan Naqinneq hjælpe med?</SectionHeading>
       <Two>
         <Card title="Screening og test" href={lp('/tests/screening-for-ordblindhed')}>
-          Find ud af om en elev har behov for en nærmere udredning. Screeningen
-          er gratis og tager ca. 15 minutter.
+          Screeningsværktøjer til de yngste klasser findes på alle skoler og i
+          MISI — og vi arbejder på at digitalisere dem.
         </Card>
         <Card title="Vejledninger til lærere" href={lp('/ressourcer/vejledninger')}>
           Praktiske vejledninger til undervisning af elever med læse- og
@@ -38,11 +38,11 @@ export default async function FolkeskolenOverblikPage({ params }: { params: Prom
       <SectionHeading>Sådan kommer du i gang</SectionHeading>
       <p>
         Har du en mistanke om at en elev har læse- og skrivevanskeligheder?
-        Start med en screening — den er nem at gennemføre og giver et godt
-        grundlag for næste skridt.
+        Start med en screening — kontakt skolens læsevejleder for at komme i
+        gang.
       </p>
       <CTARow>
-        <CTA primary href={lp('/tests/screening-for-ordblindhed')}>Start screening</CTA>
+        <CTA primary href={lp('/tests/screening-for-ordblindhed')}>Læs om screening</CTA>
         <CTA href={lp('/maalgrupper/folkeskolen/opdagelse-og-screening')}>
           Læs om opdagelse og screening
         </CTA>

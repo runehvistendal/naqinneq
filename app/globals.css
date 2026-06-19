@@ -4,7 +4,7 @@
 */
 
 /* ─── Self-hosted fonts (Google Fonts fallback via preconnect in layout) ─── */
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
 
 /* OpenDyslexic — CDN, loaded only when .f-dys is active */
 @font-face {
@@ -104,22 +104,23 @@ a { text-decoration: none; }
 .ln-loose  { --lh-base: 1.85; }
 
 /* ─── Font hooks ─── */
-.f-serif .pagebody,
-.f-serif p,
-.f-serif li,
-.f-serif .lede { font-family: var(--ff-display); }
+.f-lexend,
+.f-lexend p, .f-lexend li, .f-lexend button, .f-lexend input,
+.f-lexend .pagebody, .f-lexend .lede { font-family: 'Lexend', sans-serif; }
+
+.f-verdana,
+.f-verdana p, .f-verdana li, .f-verdana button, .f-verdana input,
+.f-verdana .pagebody, .f-verdana .lede { font-family: Verdana, Geneva, sans-serif; }
+
+.f-atkinson,
+.f-atkinson p, .f-atkinson li, .f-atkinson button, .f-atkinson input,
+.f-atkinson .pagebody, .f-atkinson .lede { font-family: 'Atkinson Hyperlegible', sans-serif; }
 
 .f-dys,
-.f-dys .pagebody,
-.f-dys p,
-.f-dys h1,
-.f-dys h2,
-.f-dys h3,
-.f-dys li,
-.f-dys button,
-.f-dys input,
-.f-dys .brand-name,
-.f-dys .lede { font-family: 'OpenDyslexic', 'Public Sans', sans-serif !important; letter-spacing: 0.01em; }
+.f-dys p, .f-dys h1, .f-dys h2, .f-dys h3,
+.f-dys li, .f-dys button, .f-dys input,
+.f-dys .pagebody, .f-dys .brand-name,
+.f-dys .lede { font-family: 'OpenDyslexic', sans-serif !important; letter-spacing: 0.01em; }
 
 /* ─── Theme hooks ─── */
 .tm-light  { /* default */ }
@@ -792,10 +793,9 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
   transition: box-shadow .15s, transform .15s;
 }
 .nc:hover { box-shadow: 0 8px 28px rgba(12,62,74,0.10); transform: translateY(-2px); }
-.nc-accent { height: 4px; }
-.nc-accent-teal  { background: var(--primary); }
-.nc-accent-navy  { background: #1c3a52; }
-.nc-accent-amber { background: #d4820a; }
+.thumb-placeholder { background: linear-gradient(135deg, var(--primary) 0%, #028090 100%); }
+.nc-thumb { height: 160px; overflow: hidden; }
+.nc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ncb { padding: 22px; }
 .ntag {
   display: inline-block; font-size: 10px; font-weight: 600;
@@ -844,12 +844,19 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 /* ─── Nyheder ─── */
 .nyhed-list { display: flex; flex-direction: column; gap: 16px; }
 .nyhed-item {
-  display: block; text-decoration: none; color: var(--ink);
+  display: flex; text-decoration: none; color: var(--ink);
   border: 1.5px solid var(--line); border-radius: var(--radius-2);
-  padding: 28px; background: var(--paper);
+  overflow: hidden; background: var(--paper);
   transition: box-shadow .15s, transform .15s;
 }
 .nyhed-item:hover { box-shadow: 0 6px 20px rgba(12,62,74,0.10); transform: translateY(-2px); }
+.nyhed-thumb { width: 200px; flex-shrink: 0; }
+.nyhed-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 600px) {
+  .nyhed-item { flex-direction: column; }
+  .nyhed-thumb { width: 100%; height: 140px; }
+}
+.nyhed-content { flex: 1; padding: 28px; }
 .nyhed-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .nyhed-date { font-size: 12px; color: var(--muted); }
 .nyhed-title {
@@ -858,6 +865,7 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
 }
 .nyhed-excerpt { font-size: 14px; color: var(--ink-2); margin: 0 0 20px; }
 .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.article-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin: 8px auto 28px; display: block; }
 .article-back { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
 
 /* ─── Kurser ─── */
@@ -985,6 +993,24 @@ a.crumb:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; 
   max-width: var(--maxw); margin: 0 auto;
 }
 @media (max-width: 767px) { .footer-bottom { flex-direction: column; padding: 16px 18px; gap: 4px; } }
+.footer-design { position: relative; }
+.footer-design summary {
+  cursor: pointer; list-style: none; color: rgba(255,255,255,.4);
+}
+.footer-design summary::-webkit-details-marker { display: none; }
+.footer-design summary:hover { color: #fff; text-decoration: underline; }
+.footer-design-menu {
+  position: absolute; bottom: calc(100% + 8px); right: 0; z-index: 50;
+  display: flex; flex-direction: column; min-width: 230px;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 10px 32px rgba(0,0,0,.25); padding: 6px; white-space: nowrap;
+}
+.footer-design-menu a {
+  padding: 8px 12px; border-radius: 6px; font-size: 13px;
+  color: var(--ink); text-decoration: none;
+}
+.footer-design-menu a:hover { background: var(--primary-soft); color: var(--primary-ink); }
+@media (max-width: 767px) { .footer-design-menu { right: auto; left: 0; } }
 
 /* ─── Accessibility panel ─── */
 .acc-overlay {

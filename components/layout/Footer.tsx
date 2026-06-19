@@ -47,6 +47,15 @@ export async function Footer({ locale }: FooterProps) {
       <div className="footer-bottom">
         <span>{t('copyright')}</span>
         <span>{t('adresse')}</span>
+        {/* Design-prototyper: vælg design direkte fra footeren */}
+        <details className="footer-design">
+          <summary>⇄ {t('skiftDesign')}</summary>
+          <div className="footer-design-menu">
+            <a href="/">Standard (nuværende)</a>
+            <a href="/designs/arktisk">Design A — Arktisk &amp; levende</a>
+            <a href="/designs/legende">Design B — Legende &amp; gamificeret</a>
+          </div>
+        </details>
       </div>
     </footer>
   );

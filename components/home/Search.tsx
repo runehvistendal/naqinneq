@@ -11,11 +11,12 @@ export function Search({ locale }: { locale: string }) {
   const router = useRouter();
   const [q, setQ] = useState('');
 
-  const results = q.trim()
-    ? SEARCH_INDEX.filter(r =>
-        r.title.toLowerCase().includes(q.toLowerCase()) ||
-        r.hint.toLowerCase().includes(q.toLowerCase())
-      ).slice(0, 6)
+  const ql = q.trim().toLowerCase();
+  const results = ql
+    ? SEARCH_INDEX.filter(r => {
+        const searchIn = [r.title, r.hint, r.titleKl ?? '', r.hintKl ?? ''];
+        return searchIn.some(s => s.toLowerCase().includes(ql));
+      }).slice(0, 6)
     : [];
 
   const navigate = useCallback((path: string) => {
@@ -52,18 +53,21 @@ export function Search({ locale }: { locale: string }) {
           {results.length === 0 ? (
             <div className="search-empty">{t('ingenResultater')}</div>
           ) : (
-            results.map(r => (
-              <button
-                key={r.id}
-                className="search-r"
-                role="option"
-                aria-selected={false}
-                onClick={() => navigate(r.path)}
-              >
-                <div className="search-r-title">{r.title}</div>
-                <div className="search-r-hint">{r.hint}</div>
-              </button>
-            ))
+            results.map(r => {
+              const isKl = locale === 'kl';
+              return (
+                <button
+                  key={r.id}
+                  className="search-r"
+                  role="option"
+                  aria-selected={false}
+                  onClick={() => navigate(r.path)}
+                >
+                  <div className="search-r-title">{isKl && r.titleKl ? r.titleKl : r.title}</div>
+                  <div className="search-r-hint">{isKl && r.hintKl ? r.hintKl : r.hint}</div>
+                </button>
+              );
+            })
           )}
         </div>
       )}

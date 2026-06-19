@@ -1,6 +1,6 @@
 # Teknisk beskrivelse — naqinneq.gl
 
-**Sidst opdateret:** maj 2026  
+**Sidst opdateret:** juni 2026  
 **Ansvarlig:** Rune Hvistendal  
 **Liveadresse:** https://sila.gl
 
@@ -118,8 +118,8 @@ naqinneq/
 │           └── sprogforstaaelse/
 │
 ├── components/                   ← Genbrugelige React-komponenter
-│   ├── home/                     ← Forsidespecifikke komponenter
-│   ├── layout/                   ← Topbar, sidebar, navigation, TTS
+│   ├── home/                     ← Forsidespecifikke komponenter (Search.tsx m.fl.)
+│   ├── layout/                   ← Topbar (inkl. søgeikon-toggle), sidebar, navigation, TTS
 │   └── ui/                       ← PageBody, Card, CTARow m.fl.
 │
 ├── lib/                          ← ★ Her redigeres indhold ★
@@ -198,6 +198,17 @@ Filen indeholder et array kaldet `NYHEDER`. Hvert element er en nyhed. **Nyeste 
   // Valgfrit — embed en YouTube-video i nyheden:
   videoUrl: 'https://www.youtube.com/embed/VIDEO_ID',
   videoTitle: 'Titel på videoen',
+
+  // Valgfrit — billede øverst i artiklen (læg filen i public/billeder/nyheder/):
+  image: '/billeder/nyheder/etwinning.jpg',
+  imageAlt: 'Beskrivelse af billedet til skærmlæsere',
+
+  // Valgfrit — hentbar fil nederst i artiklen (læg filen i public/materialer/):
+  attachment: {
+    href: '/materialer/etwinning-program-okt-2026.pdf',
+    label: 'Hent program: eTwinning (PDF)',
+    labelKl: 'Programmi aajuk: eTwinning (PDF)',   // Valgfri KL-tekst
+  },
 }
 ```
 

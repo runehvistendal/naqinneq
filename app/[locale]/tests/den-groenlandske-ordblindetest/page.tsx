@@ -32,12 +32,11 @@ export default function GroenlandskeOrdblindetestPage() {
         dokumentation.
       </p>
 
-      <SectionHeading>Hvad sker der frem mod 2027?</SectionHeading>
+      <SectionHeading>Hvor er vi i arbejdet?</SectionHeading>
       <p>
-        Vores undersøgelser viser, at kravene til en digital ordblindetest og
-        screeningsværktøjer er ens. Derfor udvikles de som ét samlet system i
-        perioden 2025–2027. Den grønlandske ordblindetest forventes at sættes i
-        drift i løbet af 2027.
+        Testen er under udvikling. Vi opdaterer denne side løbende, efterhånden
+        som arbejdet skrider frem — herunder hvornår testen tages i brug, og
+        hvordan man får adgang til den.
       </p>
 
       <Callout>

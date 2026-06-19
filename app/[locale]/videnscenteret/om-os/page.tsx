@@ -15,10 +15,21 @@ export default function OmOsPage() {
       <SectionHeading>Baggrund</SectionHeading>
       <p>
         Naqinneq er etableret som en del af den nationale handlingsplan mod
-        ordblindhed og læse- og skrivevanskeligheder 2023–2029. I handlingsplanen
+        ordblindhed og læse- og skrivevanskeligheder 2025–2029. I handlingsplanen
         har man fokus på ordblindhed i første omgang. Efterhånden igangsættes
         initiativer for andre læse- og skrivevanskeligheder.
       </p>
+
+      <SectionHeading>Det arbejder vi for</SectionHeading>
+      <ul className="bullets">
+        <li>Indsamle og dele viden om ordblindhed og andre læsevanskeligheder.</li>
+        <li>
+          Støtte lærere og vejledere i at undervise og hjælpe personer med
+          ordblindhed og læsevanskeligheder.
+        </li>
+        <li>Rådgive og vejlede fagfolk.</li>
+        <li>Udbrede viden i samfundet, så flere forstår, hvad ordblindhed er.</li>
+      </ul>
 
       <SectionHeading>Det arbejder vi med</SectionHeading>
       <Two>
@@ -37,6 +48,30 @@ export default function OmOsPage() {
         <Card title="IT og faglig støtte">
           Vi hjælper med faglige spørgsmål og teknisk support til test og
           hjælpemidler.
+        </Card>
+      </Two>
+
+      <SectionHeading>Hvem arbejder vi for?</SectionHeading>
+      <Two>
+        <Card title="Fagpersoner">
+          Vi hjælper de fagfolk, der arbejder med ordblindhed — lærere,
+          vejledere, rådgivere og kommunale konsulenter. De får viden, støtte
+          og redskaber til at hjælpe børn, unge og voksne, der har svært ved at
+          læse og skrive.
+        </Card>
+        <Card title="Uddannelser">
+          Vi samarbejder med dagtilbud, folkeskoler, ungdomsuddannelser og
+          voksenuddannelser. Vi laver både fælles indsatser på tværs og
+          målrettede indsatser til hver gruppe.
+        </Card>
+        <Card title="Børn, unge og familier">
+          Vi støtter børn og unge med ordblindhed — og deres forældre og
+          pårørende — så hverdagen bliver lettere.
+        </Card>
+        <Card title="Samfundet">
+          Vi arbejder også for myndigheder, arbejdsgivere og beslutningstagere.
+          De spiller en vigtig rolle i at skabe gode vilkår for mennesker med
+          ordblindhed.
         </Card>
       </Two>
 

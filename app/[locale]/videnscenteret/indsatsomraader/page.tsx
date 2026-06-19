@@ -7,9 +7,11 @@ export default function IndsatsomraaderPage() {
   return (
     <PageBody>
       <Lede>
-        Målet er at have fokus på ordblindhed i de første år. Efterhånden som
-        ressourcer og kompetencer opbygges, igangsættes initiativer, der også
-        retter sig mod andre former for læse- og skrivevanskeligheder.
+        Handlingsplanen mod ordblindhed 2025–2029 har fire prioriterede
+        indsatsområder. Målet er at have fokus på ordblindhed i de første år.
+        Efterhånden som ressourcer og kompetencer opbygges, igangsættes
+        initiativer, der også retter sig mod andre former for læse- og
+        skrivevanskeligheder.
       </Lede>
 
       <SectionHeading>Udvikling af udredningsmaterialer</SectionHeading>
@@ -55,6 +57,35 @@ export default function IndsatsomraaderPage() {
         </li>
       </ul>
 
+      <SectionHeading>Lovtiltag</SectionHeading>
+      <p>
+        Der findes i dag ingen lovgivning i Grønland, der specifikt sikrer
+        rettigheder for personer med ordblindhed og andre læse- og
+        skrivevanskeligheder. Personer med ordblindhed er omfattet af
+        Handicaploven, men lovgivningen er både mangelfuld og uklar — særligt
+        for unge og voksne.
+      </p>
+      <p>
+        Med introduktionen af en ordblindetest bliver behovet for
+        lovgivningsmæssige rammer endnu mere påtrængende. Lovtiltagene skal
+        blandt andet sikre adgang til testning og efterfølgende støtte, klare
+        procedurer for hvordan støtte iværksættes og finansieres, samt robust
+        håndtering af datasikkerhed i forbindelse med testningen.
+      </p>
+      <p>
+        Lovgivningsarbejdet forventes færdiggjort i 2027 med henblik på
+        ikrafttrædelse fra 2027/2028.
+      </p>
+      <p>Indsatsområdet omfatter følgende initiativer:</p>
+      <ul className="bullets">
+        <li>
+          Etablering af en arbejdsgruppe med fagfolk fra relevante
+          departementer, styrelser og andre instanser, der skal bistå
+          Departementet for Uddannelse med det lovforberedende arbejde
+        </li>
+        <li>Udarbejdelse af nye lovforslag</li>
+      </ul>
+
       <SectionHeading>Øget vidensniveau og kompetenceløft</SectionHeading>
       <p>
         Der mangler fagpersonale med viden om ordblindhed og andre læse- og
@@ -79,12 +110,16 @@ export default function IndsatsomraaderPage() {
           Styrkelse af fagligheden vedrørende skriftsprogsvanskeligheder ved
           Institut for Læring (Ilinniarfissuaq)
         </li>
-        <li>Læsevejlederkursus (fagspecifikt kursus)</li>
+        <li>Kompetenceudvikling til Ordblindevejleder med testkompetencer</li>
         <li>
-          Kompetenceudviklingsforløb for undervisere på tværs af uddannelser
-          og vejledere
+          Kompetenceudviklingsforløb for undervisere og vejledere på tværs af
+          uddannelser
         </li>
-        <li>Oplysningskampagne med ledelses- og forvaltningsspor</li>
+        <li>Oplysningskampagne med fokus på ledelses- og forvaltningsspor</li>
+        <li>
+          Permanentgørelse af Uddannelsesstyrelsens dysleksiafdeling og
+          omdannelse til videnscenter
+        </li>
       </ul>
 
       <Callout>

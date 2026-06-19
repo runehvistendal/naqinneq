@@ -81,11 +81,11 @@ export default function SprogforstaaelsePage() {
         <Card title="Tilpasninger i undervisningen">
           Tydelig struktur, visuel støtte og korte, klare instruktioner.
         </Card>
+        <Card title="Inkluderende læringsmiljøer">
+          Sproget understøttes aktivt, og alle elever får mulighed for at
+          deltage.
+        </Card>
       </Two>
-      <p>
-        Dertil kommer inkluderende læringsmiljøer, hvor sproget understøttes
-        aktivt, og alle elever får mulighed for at deltage.
-      </p>
 
       <Callout>
         Teksten er stillet til rådighed af{' '}

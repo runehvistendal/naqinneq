@@ -9,7 +9,6 @@ import { Breadcrumb } from './Breadcrumb';
 import { AccessPanel } from './AccessPanel';
 import { MobileDrawer } from './MobileDrawer';
 import { TtsStrip } from './TtsStrip';
-import { PageFoot } from './PageFoot';
 import { useAccessibility } from '@/components/providers/AccessibilityProvider';
 import { PAGE_MAP } from '@/lib/nav';
 import { getNyhed } from '@/lib/nyheder';
@@ -45,7 +44,11 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
   const page = PAGE_MAP.get(pathname);
 
   function getDynamicTitle(): string | null {
-    if (pathname.startsWith('/nyheder/')) return getNyhed(pathname.slice('/nyheder/'.length))?.title ?? 'Nyhed';
+    if (pathname.startsWith('/nyheder/')) {
+      const nyhed = getNyhed(pathname.slice('/nyheder/'.length));
+      if (!nyhed) return 'Nyhed';
+      return locale === 'kl' && nyhed.titleKl ? nyhed.titleKl : nyhed.title;
+    }
     if (pathname.startsWith('/ressourcer/kurser/')) return getKursus(pathname.slice('/ressourcer/kurser/'.length))?.title ?? 'Kursus';
     return null;
   }
@@ -168,9 +171,6 @@ export function SiteShell({ locale, children, footer }: SiteShellProps) {
                 </button>
                 {children}
               </article>
-              {/* PageFoot excluded from TTS */}
-              <PageFoot />
-
             </main>
           </div>
         )}

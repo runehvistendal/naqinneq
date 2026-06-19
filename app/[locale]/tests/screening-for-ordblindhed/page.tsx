@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { PageBody, Lede, SectionHeading, Two, Card, CTARow, CTA, Callout } from '@/components/ui/PageBody';
+import { PageBody, Lede, SectionHeading, Callout } from '@/components/ui/PageBody';
 
 export const metadata: Metadata = { title: 'Screening for ordblindhed' };
 
@@ -21,39 +21,19 @@ export default function ScreeningPage() {
       </p>
       <p>
         Nu arbejdes der på at gøre tidlig identifikation af ordblindhed
-        lovpligtig og på at digitalisere de eksisterende screeningsværktøjer.
-        Digitaliseringen gør det lettere at opdatere læsenormer og sikrer mere
-        ensartede resultater. De digitale screeningsværktøjer forventes klar i
-        løbet af 2027.
+        lovpligtig.
       </p>
-      <Two>
-        <Card title="Tager ca. 15 minutter" tag="Online">
-          Du kan tage screeningen alene eller sammen med en lærer eller
-          vejleder. Du får svar med det samme.
-        </Card>
-        <Card title="Tilgængelig på to sprog" tag="Kalaallisut · Dansk">
-          Vælg det sprog du er mest fortrolig med. Begge versioner er udviklet
-          i samarbejde med Uddannelsesstyrelsen.
-        </Card>
-      </Two>
-      <CTARow>
-        <CTA primary>Start screening (aktiveres i løbet af 2027)</CTA>
-      </CTARow>
-
-      <SectionHeading>Hvad sker der efter screeningen?</SectionHeading>
-      <ol className="numbered">
-        <li>
-          Resultatet viser om der er <b>ingen</b>, <b>mulig</b> eller{' '}
-          <b>tydelig</b> indikation af ordblindhed.
-        </li>
-        <li>
-          Ved mulig eller tydelig indikation anbefales en egentlig ordblindetest.
-        </li>
-        <li>
-          Skoler og institutioner kan kontakte videnscenteret for rådgivning om
-          næste skridt.
-        </li>
-      </ol>
+      <SectionHeading>Vi arbejder på at digitalisere screeningen</SectionHeading>
+      <p>
+        Screeningsværktøjerne findes i dag i papirform. Vi arbejder på at
+        digitalisere dem, så testresultaterne bliver mere ensartede, det
+        administrative arbejde bliver lettere, og læsenormerne løbende kan
+        opdateres.
+      </p>
+      <p>
+        Når den digitale screening er klar, finder du al relevant information
+        på denne side.
+      </p>
 
       <Callout>
         Screeningsværktøjer til de yngste klasser ligger allerede i alle skoler
