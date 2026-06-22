@@ -200,14 +200,14 @@ Filen indeholder et array kaldet `NYHEDER`. Hvert element er en nyhed. **Nyeste 
   videoTitle: 'Titel på videoen',
 
   // Valgfrit — billede øverst i artiklen (læg filen i public/billeder/nyheder/):
-  image: '/billeder/nyheder/etwinning.jpg',
+  image: '/billeder/nyheder/eksempel.jpg',
   imageAlt: 'Beskrivelse af billedet til skærmlæsere',
 
   // Valgfrit — hentbar fil nederst i artiklen (læg filen i public/materialer/):
   attachment: {
-    href: '/materialer/etwinning-program-okt-2026.pdf',
-    label: 'Hent program: eTwinning (PDF)',
-    labelKl: 'Programmi aajuk: eTwinning (PDF)',   // Valgfri KL-tekst
+    href: '/materialer/eksempel-program.pdf',
+    label: 'Hent program (PDF)',
+    labelKl: 'Programmi aajuk (PDF)',   // Valgfri KL-tekst
   },
 }
 ```

@@ -157,24 +157,6 @@ window.SITE = {
   /* ---------------- Nyheder (nyeste først) ------------------------------ */
   news: [
     {
-      slug: "etwinning-seminar-italien-2026",
-      category: "Nyhed", date: "10. juni 2026", dateISO: "2026-06-10",
-      title: "eTwinning inviterer 2 grønlandske lærere på seminar i Italien i oktober 2026",
-      teaser: "Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland.",
-      image: "/billeder/nyheder/etwinning.jpg",
-      imageAlt: "Illustration: fire lærere samarbejder om et bord med bøger og papirer",
-      body: [
-        { t: "p", text: "eTwinning ønsker at styrke samarbejdet mellem skoler i fjerne dele af Europa. Italien, Norge, Sverige, Finland og Rigsfællesskabet arrangerer seminarer i 2026 og 2027 med særlig fokus på lærere fra mindre tilgængelige regioner." },
-        { t: "p", text: "Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland. Udgifter til vikar, måltider på rejsen og parkering dækkes ikke." },
-        { t: "p", text: "Seminaret afholdes i Italien den 21.–24. oktober 2026, med afrejse ca. 19. oktober og hjemkomst ca. 26. oktober." },
-        { t: "p", text: "Seminaret foregår på engelsk. \"Engelsk er ikke modersmål for nogen af deltagerne, så vi hjælper hinanden med kommunikationen.\"" },
-        { t: "infobox", title: "Tilmelding", text: "Interesserede lærere skal kontakte etwinning@stukuvm.dk inden tilmeldingsfristen den 14. august 2026 — efter aftale med skolelederen. Et foreløbigt program kan downloades herunder." },
-        { t: "cta", buttons: [
-          { text: "⬇ Hent program: eTwinning (PDF)", href: "/materialer/etwinning-program-okt-2026.pdf", primary: true, external: true }
-        ] }
-      ]
-    },
-    {
       slug: "intowords-groenlandsk",
       category: "Nyhed", date: "27. marts 2026", dateISO: "2026-03-27",
       title: "IntoWords – nu på grønlandsk",
