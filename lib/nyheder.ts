@@ -18,6 +18,41 @@ export interface Nyhed {
 
 export const NYHEDER: Nyhed[] = [
   {
+    slug: 'etwinning-seminar-italien-2026',
+    tag: 'Nyhed',
+    title: 'eTwinning inviterer 2 grønlandske lærere på seminar i Italien i oktober 2026',
+    titleKl: 'eTwinningip kalaallit ilinniartitsisut marluk oktober 2026 Italiemi seminareqarnissamut qaaqquai',
+    date: '22. juni 2026',
+    dateIso: '2026-06-22',
+    excerpt:
+      'Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland.',
+    excerptKl:
+      'eTwinningip seminareqartitsinissaanut peqataaneq akeqanngilaq. Etwinningip Kalaallit Nunaannit peqataasussanut marlunnut angalaneq, najugaqarneq, pikkorissarnermut peqataaneq nerisaqarnerlu isumagissavaa.',
+    body: [
+      'eTwinning ønsker at skabe et stærkere samarbejde mellem skoler i fjerntliggende dele af det europæiske fællesskab. Derfor arrangerer Italien, Norge, Sverige, Finland og Rigsfællesskabet et seminar i 2026 og et seminar i 2027, hvor lærere fra fjernere dele af vores lande bliver særligt inviteret til at deltage.',
+      'Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland. eTwinning betaler ikke vikar, forplejning i løbet af rejsetiden, parkering.',
+      'Seminaret finder sted i Italien – vi ved endnu ikke præcist hvor i Italien. Datoer: 21.–24. oktober. I vil nok skulle rejse fra Grønland d. 19. oktober og være retur d. 26. oktober.',
+      'Seminaret foregår på engelsk. Engelsk er ikke modersmål for nogen af deltagerne, så vi hjælper hinanden med kommunikationen.',
+      'Program for seminaret er vedhæftet her, men det er et foreløbigt program. Det mere præcise indhold følger senere.',
+      'Hvis seminaret har interesse for dig eller dine lærere, så kontakt venligst etwinning@stukuvm.dk. Tilmeldingsfrist d. 14. august 2026. Før du tilmelder dig, skal du have aftalt det med din skoleleder.',
+    ],
+    bodyKl: [
+      'eTwinningip kissaatigaa Europami atuarfiit ungasissumiittut suleqatigiinnerat nukittorsassallugu. Taamaattumik Italia, Norge, Sverige, Finlandi kiisalu Naalagaaffeqatigiinnerup iluani ilaasortat seminarertitsissapput 2026-mi aammalu 2027-mi, ilinniartitsisut nunanit ungasinnerusuneersut immikkut peqataanissamut qaaqquneqarput.',
+      'eTwinningip seminareqartitsinissaanut peqataaneq akeqanngilaq. Etwinningip Kalaallit Nunaannit peqataasussanut marlunnut angalaneq, najugaqarneq, pikkorissarnermut peqataaneq nerisaqarnerlu isumagissavaa. eTwinningip vikareqarneq, angalanermi nerisaqarneq, bilinillu inissiineq akilissanngilaa.',
+      'Seminareqarneq pissaaq Italiami – suli Italiami sumeeqqissaassanersoq ilisimaneqanngilaq. Ullut seminareqarfiusussat: 21.–24. oktober. Kalaallit Nunaanniit aallassaasi 19. oktober utereersimassallusilu 26. oktober.',
+      'Seminari tuluttut ingerlanneqassaaq. Peqataasut ilaat tuluttut ilitsoqqussaralugu oqaaseqartuunngimmata ikioqatigiinnissarput naatsorsuutigaarput.',
+      'Programmi ilanngunneqartoq utaqqiisaarutaavoq. Eqqornerusoq kingusinnerusukkut ikkunneqarumaarpoq.',
+      'Seminarimut peqataanissannut soqutiginnikkuit uunga saaffiginnissaatit etwinning@stukuvm.dk. Peqataanissamut ulloq nalunaarfissaq kingulleq tassaavoq 14. august 2026. Eqqaamallugu nalunaannginninni atuarfimmi pisortat akuersiteqqaassagakku.',
+    ],
+    image: '/billeder/nyheder/etwinning.jpg',
+    imageAlt: 'Illustration: fire lærere samarbejder om et bord med bøger og papirer',
+    attachment: {
+      href: '/materialer/etwinning-program-okt-2026.pdf',
+      label: 'Hent program: eTwinning',
+      labelKl: 'Programmi aajuk: eTwinning',
+    },
+  },
+  {
     slug: 'intowords-groenlandsk',
     tag: 'Nyhed',
     title: 'IntoWords – nu på grønlandsk',

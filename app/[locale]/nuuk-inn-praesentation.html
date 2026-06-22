@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuuk Inn — Forslag til ny hjemmeside</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D2740; --navy2:#123a5c; --amber:#E8935A; --ice:#A8D0E6;
+    --ink:#0D2740; --paper:#F7F9FB; --stone:#5a6b7b; --line:#dde5ee;
+    --font:"Inter",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:var(--navy)}
+  .deck{scroll-snap-type:y mandatory;height:100vh;overflow-y:scroll}
+  .slide{scroll-snap-align:start;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:72px 8vw;position:relative}
+  .slide.light{background:var(--paper);color:var(--ink)}
+  .slide.dark{background:var(--navy);color:#fff}
+  .slide.navy2{background:linear-gradient(160deg,#0D2740,#123a5c);color:#fff}
+  .num{position:absolute;top:28px;right:8vw;font-size:14px;font-weight:600;opacity:.35}
+  .kicker{font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+  h1{font-size:clamp(36px,5.4vw,66px);font-weight:900;line-height:1.08;letter-spacing:-.03em}
+  h2{font-size:clamp(28px,3.8vw,46px);font-weight:800;line-height:1.12;letter-spacing:-.02em;margin-bottom:30px}
+  p{font-size:clamp(17px,1.6vw,21px);line-height:1.55}
+  .lead{font-size:clamp(20px,2vw,26px);max-width:840px;color:var(--stone);line-height:1.5}
+  .dark .lead,.navy2 .lead{color:rgba(255,255,255,.82)}
+  .rule{width:60px;height:5px;background:var(--amber);border-radius:3px;margin-bottom:24px}
+  .points{display:flex;flex-direction:column;gap:20px;max-width:940px}
+  .point{display:flex;gap:20px;align-items:flex-start}
+  .point .ic{flex:none;width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:24px}
+  .bad .ic{background:rgba(196,80,63,.14)}
+  .good .ic{background:rgba(232,147,90,.16)}
+  .point h3{font-size:clamp(19px,1.9vw,23px);font-weight:800;margin-bottom:4px;letter-spacing:-.01em}
+  .point p{font-size:clamp(15.5px,1.5vw,18px);color:var(--stone)}
+  .dark .point p,.navy2 .point p{color:rgba(255,255,255,.74)}
+  .dark .point h3,.navy2 .point h3{color:#fff}
+  .tech{display:block;margin-top:6px;font-size:clamp(14px,1.3vw,15.5px);color:var(--stone);opacity:.92}
+  .tech b{color:var(--amber);font-weight:700}
+  .dark .tech,.navy2 .tech{color:rgba(255,255,255,.55)}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:4px}
+  .opt{border-radius:18px;padding:32px;background:#fff;border:1px solid var(--line)}
+  .opt.b{background:var(--navy);color:#fff;border:none}
+  .opt .tag{display:inline-block;font-size:13.5px;font-weight:800;padding:6px 14px;border-radius:30px;margin-bottom:14px;background:rgba(13,39,64,.07);color:var(--navy)}
+  .opt.b .tag{background:var(--amber);color:var(--navy)}
+  .opt h3{font-size:23px;margin-bottom:11px}
+  .opt.b h3{color:#fff}
+  .opt p{font-size:17px;color:var(--stone);line-height:1.5}
+  .opt.b p{color:rgba(255,255,255,.82)}
+  .smallnote{margin-top:22px;font-size:16px;color:var(--stone);max-width:840px;line-height:1.5}
+  table{width:100%;border-collapse:collapse;margin-top:4px;font-size:clamp(15px,1.45vw,18px)}
+  th,td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--stone);font-weight:700}
+  td.what{font-weight:700;width:38%}
+  td.when{color:var(--stone);width:16%;white-space:nowrap}
+  td.price{font-weight:700;color:var(--navy)}
+  .hl{color:var(--amber)}
+  .note{font-size:16px;color:var(--stone);margin-top:20px;line-height:1.5;max-width:840px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:6px;max-width:1000px}
+  .step{padding:28px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(168,208,230,.22)}
+  .step .n{font-size:34px;font-weight:900;color:var(--amber);line-height:1}
+  .step h3{color:#fff;margin:12px 0 6px;font-size:20px}
+  .step p{color:rgba(255,255,255,.72);font-size:16.5px}
+  .by{margin-top:32px;font-size:18px;opacity:.85}
+  .hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;color:rgba(255,255,255,.4);z-index:10}
+  @media(max-width:760px){
+    .opts,.steps{grid-template-columns:1fr}
+    .slide{padding:60px 8vw}
+    td.what,td.when{width:auto}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1 — TITLE -->
+  <section class="slide navy2">
+    <span class="num">1</span>
+    <span class="kicker">Forslag</span>
+    <h1>En ny hjemmeside<br>til Nuuk Inn</h1>
+    <p class="lead" style="margin-top:24px">En flot, enkel og moderne side, hvor gæster nemt kan se jeres lejligheder — og booke direkte hos jer.</p>  </section>
+
+  <!-- 2 — PROBLEM (plain + a little tech) -->
+  <section class="slide light">
+    <span class="num">2</span>
+    <div class="rule"></div>
+    <span class="kicker">Sådan er det i dag</span>
+    <h2>Den nuværende side koster jer gæster</h2>
+    <div class="points">
+      <div class="point bad"><span class="ic">🔎</span><div>
+        <h3>Nye gæster finder konkurrenterne — ikke jer</h3>
+        <p>Når en turist søger efter et sted at bo i Nuuk, dukker de andre udlejere op først. I står stærkt på navnet "Nuuk Inn", men ikke når folk leder efter en lejlighed.</p>
+        <span class="tech"><b>Hvorfor:</b> siden er bygget, så Google har svært ved at læse indholdet — derfor rangerer den ikke på søgninger som "lejlighed i Nuuk".</span>
+      </div></div>
+      <div class="point bad"><span class="ic">🤖</span><div>
+        <h3>Google og AI kan ikke rigtig læse jer</h3>
+        <p>Flere og flere gæster spørger ChatGPT eller Google direkte: "hvor skal jeg bo i Nuuk?" — men de får ikke Nuuk Inn som svar.</p>
+        <span class="tech"><b>Hvorfor:</b> siden afviser automatisk de "robotter", som Google og AI-tjenester bruger til at læse hjemmesider — så de springer jer over.</span>
+      </div></div>
+      <div class="point bad"><span class="ic">⚠️</span><div>
+        <h3>Browseren advarer om, at siden "ikke er sikker"</h3>
+        <p>Mange gæster bliver utrygge og klikker væk, før de overhovedet ser lejlighederne.</p>
+        <span class="tech"><b>Hvorfor:</b> sidens sikkerhedscertifikat passer ikke til adressen.</span>
+      </div></div>
+      <div class="point bad"><span class="ic">✉️</span><div>
+        <h3>Booking foregår manuelt via mail</h3>
+        <p>Det er besværligt, der er intet samlet overblik over kalenderen — og I er ikke synlige dér, hvor mange turister leder efter overnatning.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 3 — SOLUTION (benefits, plain + a little tech) -->
+  <section class="slide dark">
+    <span class="num">3</span>
+    <span class="kicker">Sådan bliver det</span>
+    <h2>Det får I med den nye side</h2>
+    <div class="points">
+      <div class="point good"><span class="ic">🔗</span><div>
+        <h3>Alle bookinger ét sted</h3>
+        <p>Gæster kan booke hos jer — og hvis I vil, også på Booking.com, Airbnb og Hotels.com. I får én indgang, der holder kalenderen ens alle steder, så I aldrig booker samme lejlighed to gange.</p>
+      </div></div>
+      <div class="point good"><span class="ic">🌍</span><div>
+        <h3>Tre sprog — efter hvem gæsten er</h3>
+        <p>Grønlandsk til de lokale, dansk til arbejdsrejsende og engelsk til turister.</p>
+        <span class="tech">Dansk og engelsk klarer jeg selv; grønlandsk hyrer jeg en oversætter til — medmindre I har en, der kan hjælpe.</span>
+      </div></div>
+      <div class="point good"><span class="ic">⭐</span><div>
+        <h3>Lettere at finde — også for nye gæster og AI</h3>
+        <p>Flot, sikker og hurtig side, der virker på mobilen, uden advarsler.</p>
+        <span class="tech"><b>Hvorfor:</b> bygget så Google og AI kan læse og anbefale jer — og jeg hjælper jer også med de gratis profiler udenom (Google-kort, Visit Greenland, anmeldelser), for det er dér, gæsterne og AI'en kigger.</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 4 — GET FOUND OFF-SITE -->
+  <section class="slide light">
+    <span class="num">4</span>
+    <div class="rule"></div>
+    <span class="kicker">Bliv fundet — gratis</span>
+    <h2>Synlig udenom selve hjemmesiden</h2>
+    <div class="points">
+      <div class="point good"><span class="ic">📍</span><div>
+        <h3>Google-kort &amp; erhvervsprofil</h3>
+        <p>Det kort med stjerner, der dukker op øverst, når nogen søger "overnatning i Nuuk" — tit før hjemmesiderne. Mange ringer eller booker direkte derfra.</p>
+        <span class="tech"><b>Hvorfor:</b> en gratis Google-profil viser jeres billeder, anmeldelser, telefon og rute — og fylder mest på mobilen. Jeg hjælper med at oprette den.</span>
+      </div></div>
+      <div class="point good"><span class="ic">🧭</span><div>
+        <h3>Visit Greenland &amp; rejsesider</h3>
+        <p>Turister og AI-tjenester læner sig op ad Visit Greenland og lignende sider, når de anbefaler steder at bo.</p>
+        <span class="tech">Jeg kan kontakte Visit Greenland og få jeres oplysninger opdateret, så de passer med den nye side.</span>
+      </div></div>
+    </div>  </section>
+
+  <!-- 5 — BOOKING: two options (suggestion) -->
+  <section class="slide light">
+    <span class="num">5</span>
+    <div class="rule"></div>
+    <span class="kicker">Booking — et forslag</span>
+    <h2>To måder at tage imod gæster</h2>
+    <div class="opts">
+      <div class="opt">
+        <span class="tag">Mulighed A · hold det enkelt</span>
+        <h3>Book direkte på jeres egen side</h3>
+        <p>I tager imod bookinger direkte på den nye side i stedet for kun via mail. Den enkleste og billigste løsning — og I beholder alle pengene.</p>
+      </div>
+      <div class="opt b">
+        <span class="tag">Mulighed B · nå flere gæster</span>
+        <h3>Kom også på de store platforme</h3>
+        <p>Kom (også) på Booking.com, Airbnb og Hotels.com — dér hvor mange turister leder. Et samlet system holder jeres kalender ens alle steder, så I aldrig dobbeltbooker.</p>
+        <p style="font-size:14.5px;color:rgba(255,255,255,.62);margin-top:12px">Bonus: Smoobu kan også justere priser efter sæson og efterspørgsel — kan slås til senere, hvis I vil.</p>
+      </div>
+    </div>
+    <p class="smallnote">Jeg ved ikke, om I allerede er på de platforme. Er I ikke det, foreslår jeg at komme på — det giver flere gæster, og I kan stadig tage imod direkte bookinger uden gebyr.</p>
+  </section>
+
+  <!-- 6 — PROOF / WHY IT PAYS -->
+  <section class="slide dark">
+    <span class="num">6</span>
+    <span class="kicker">Derfor betaler det sig</span>
+    <h2>Tallene bag en moderne side</h2>
+    <div class="opts" style="margin-top:6px">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,208,230,.22);border-radius:14px;padding:24px">
+        <div style="font-size:clamp(30px,4vw,44px);font-weight:900;color:#E8935A;line-height:1">+24–28 %</div>
+        <p style="font-size:16px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.5">flere bookinger med <b style="color:#fff">professionelle billeder</b> — og op til +40 % i indtjening.<sup>1</sup></p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,208,230,.22);border-radius:14px;padding:24px">
+        <div style="font-size:clamp(30px,4vw,44px);font-weight:900;color:#E8935A;line-height:1">+7,5–26 %</div>
+        <p style="font-size:16px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.5">flere af jeres <b style="color:#fff">egne direkte bookinger</b>, når I også er på Booking/Airbnb ("billboard-effekten").<sup>2</sup></p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,208,230,.22);border-radius:14px;padding:24px">
+        <div style="font-size:clamp(30px,4vw,44px);font-weight:900;color:#E8935A;line-height:1">24/7</div>
+        <p style="font-size:16px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.5"><b style="color:#fff">Øjeblikkelig bekræftelse</b> døgnet rundt. Online booking halverer no-shows (fra ~20 % til ~10 %) — modsat mail, hvor gæsten venter på svar.<sup>3</sup></p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,208,230,.22);border-radius:14px;padding:24px">
+        <div style="font-size:clamp(30px,4vw,44px);font-weight:900;color:#E8935A;line-height:1">94 %</div>
+        <p style="font-size:16px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.5">dømmer jer på <b style="color:#fff">designet</b> — på 0,05 sekund. En moderne side løfter typisk konvertering +20–200 %.<sup>4</sup></p>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:rgba(255,255,255,.5);margin-top:24px;line-height:1.55;max-width:920px">
+      Kilder: 1) HomeJab / Gitnux — vacation rental statistics · 2) Cornell-studie / HotelMinder — "billboard effect" · 3) RMS Cloud / RestaurantsTables · 4) Hostinger / Sixth City — web design statistics. Tallene er fra den globale hotel- og ferieudlejningsbranche (ikke Grønlands-specifikke).
+    </p>
+  </section>
+
+  <!-- 7 — COSTS -->
+  <section class="slide light">
+    <span class="num">7</span>
+    <div class="rule"></div>
+    <span class="kicker">Udgiftsoversigt</span>
+    <h2>Hvad koster det?</h2>
+    <div style="max-width:820px">
+      <p style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:2px">Engangsbeløb — betales én gang</p>
+      <table>
+        <tbody>
+          <tr><td class="what">Hjemmeside, design &amp; fotos<br><span style="font-weight:400;color:var(--stone);font-size:14px">Dansk &amp; engelsk tekst er inkluderet</span></td><td class="price" style="text-align:right;white-space:nowrap">10.000 kr.</td></tr>
+          <tr><td class="what">Grønlandsk oversættelse<br><span style="font-weight:400;color:var(--stone);font-size:14px">Oversætter finder jeg</span></td><td class="price" style="text-align:right;white-space:nowrap">ca. 500 kr. / A4-side</td></tr>
+          <tr><td class="what">Google-profil, Visit Greenland &amp; evt. opsætning på Booking/Airbnb</td><td class="price" style="text-align:right;white-space:nowrap"><span class="hl">Inkluderet</span></td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin:26px 0 2px">Løbende udgifter</p>
+      <table>
+        <tbody>
+          <tr><td class="what">Domænenavn (nuukinn.com)</td><td class="price" style="text-align:right;white-space:nowrap">ca. 110 kr. <span style="font-weight:400;color:var(--stone)">/ år</span></td></tr>
+          <tr><td class="what">Hjemmesiden online (hosting)</td><td class="price" style="text-align:right;white-space:nowrap"><span class="hl">Gratis</span> <span style="font-weight:400;color:var(--stone)">/ md</span></td></tr>
+          <tr><td class="what">Booking-system (Smoobu)</td><td class="price" style="text-align:right">Mulighed A: <span class="hl">gratis</span><br>Mulighed B: ca. 560–620 kr. <span style="font-weight:400;color:var(--stone)">/ md (5 enheder)</span></td></tr>
+          <tr><td class="what">Hjælp &amp; vedligehold</td><td class="price" style="text-align:right;white-space:nowrap">Aftales <span style="font-weight:400;color:var(--stone)">/ md</span></td></tr>
+        </tbody>
+      </table>
+      <p class="note">Hovedudgiften er <b>engangsbeløbet</b> for selve siden. De løbende udgifter er små og faste. Tallene er vejledende.</p>
+    </div>
+  </section>
+
+  <!-- 7 — NEXT STEPS -->
+  <section class="slide dark">
+    <span class="num">8</span>
+    <span class="kicker">Kom godt i gang</span>
+    <h2>Næste skridt</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Vælg løsning</h3><p>Mulighed A eller B — og hvilke sprog I vil have.</p></div>
+      <div class="step"><div class="n">2</div><h3>Billeder, tekst &amp; oversættelse</h3><p>Jeg får fotos, tekster og den grønlandske oversættelse på plads.</p></div>
+      <div class="step"><div class="n">3</div><h3>Jeg bygger — og I går online</h3><p>Den færdige side lægges ud på nuukinn.com, klar til gæster.</p></div>
+    </div>
+  </section>
+
+</div>
+<div class="hint">↓ scroll / piletaster</div>
+<script>
+  const deck=document.querySelector('.deck');
+  const slides=[...document.querySelectorAll('.slide')];
+  function current(){return Math.round(deck.scrollTop/window.innerHeight);}
+  function go(d){const i=Math.max(0,Math.min(slides.length-1,current()+d));slides[i].scrollIntoView({behavior:'smooth'});}
+  window.addEventListener('keydown',e=>{
+    if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}
+    if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
+  });
+</script>
+</body>
+</html>

@@ -157,6 +157,25 @@ window.SITE = {
   /* ---------------- Nyheder (nyeste først) ------------------------------ */
   news: [
     {
+      slug: "etwinning-seminar-italien-2026",
+      category: "Nyhed", date: "22. juni 2026", dateISO: "2026-06-22",
+      title: "eTwinning inviterer 2 grønlandske lærere på seminar i Italien i oktober 2026",
+      teaser: "Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland.",
+      image: "/billeder/nyheder/etwinning.jpg",
+      imageAlt: "Illustration: fire lærere samarbejder om et bord med bøger og papirer",
+      body: [
+        { t: "p", text: "eTwinning ønsker at skabe et stærkere samarbejde mellem skoler i fjerntliggende dele af det europæiske fællesskab. Derfor arrangerer Italien, Norge, Sverige, Finland og Rigsfællesskabet et seminar i 2026 og et seminar i 2027, hvor lærere fra fjernere dele af vores lande bliver særligt inviteret til at deltage." },
+        { t: "p", text: "Det er gratis at deltage i et eTwinning seminar. eTwinning betaler for transport, ophold, kursus og forplejning til de to deltagere fra Grønland. eTwinning betaler ikke vikar, forplejning i løbet af rejsetiden, parkering." },
+        { t: "p", text: "Seminaret finder sted i Italien – vi ved endnu ikke præcist hvor i Italien. Datoer: 21.–24. oktober. I vil nok skulle rejse fra Grønland d. 19. oktober og være retur d. 26. oktober." },
+        { t: "p", text: "Seminaret foregår på engelsk. Engelsk er ikke modersmål for nogen af deltagerne, så vi hjælper hinanden med kommunikationen." },
+        { t: "p", text: "Program for seminaret er vedhæftet her, men det er et foreløbigt program. Det mere præcise indhold følger senere." },
+        { t: "p", text: "Hvis seminaret har interesse for dig eller dine lærere, så kontakt venligst etwinning@stukuvm.dk. Tilmeldingsfrist d. 14. august 2026. Før du tilmelder dig, skal du have aftalt det med din skoleleder." },
+        { t: "cta", buttons: [
+          { text: "Hent program: eTwinning", href: "/materialer/etwinning-program-okt-2026.pdf", primary: true, external: true }
+        ] }
+      ]
+    },
+    {
       slug: "intowords-groenlandsk",
       category: "Nyhed", date: "27. marts 2026", dateISO: "2026-03-27",
       title: "IntoWords – nu på grønlandsk",
